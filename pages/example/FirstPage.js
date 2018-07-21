@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import ScrollViewDemo from "./ScrollViewDemo";
 import SectionListExample from "./SectionListExample";
+import CommunicateWithAndroid from "./CommunicateWithAndroid";
 
 export default class App extends Component {
     render() {
@@ -49,6 +50,14 @@ export default class App extends Component {
                             title={'SectionListExample'}
                             onPress={() => {
                                 navigate('SectionListExample');
+                            }}
+                        />
+                    </View>
+                    <View style={styles.item}>
+                        <Button
+                            title={'CommunicateWithAndroid'}
+                            onPress={() => {
+                                navigate('CommunicateWithAndroid');
                             }}
                         />
                     </View>

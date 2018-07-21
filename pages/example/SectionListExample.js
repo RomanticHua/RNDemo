@@ -66,7 +66,7 @@ export default class SectionListExample extends Component<> {
 
         setTimeout(() => {
 
-            Alert.alert('标题', '刷新完成',
+           /* Alert.alert('标题', '刷新完成',
                 [
                     {
                         text: '取消',
@@ -81,8 +81,9 @@ export default class SectionListExample extends Component<> {
                         }
                     },
                 ]
-            );
+            );*/
 
+           Alert.alert('aa');
             this.setState({
                 refreshState: false,
             });
