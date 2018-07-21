@@ -7,7 +7,7 @@ import {
     NativeModules,
     Alert,
     DeviceEventEmitter,
-    ToastAndroid
+    ToastAndroid, Button
 } from 'react-native';
 /*在React Naitve层，RN端可通过 NativeModules.[module名].[方法名]来调起原生的方法，
 同时也可以通过RN端可通过 NativeModules.[module名].[参数名]的方式来获取传递的参数*/
@@ -37,7 +37,9 @@ export default class CommunicateWithAndroid extends Component<> {
                     }}
                 >利用Promise来通信</Text>
 
-
+                <Button
+                title={'新增的'}
+                />
             </View>
         );
     }
