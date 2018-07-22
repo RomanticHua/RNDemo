@@ -6,7 +6,9 @@
 
 import React, {Component} from 'react';
 import {Button, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
-const arrays = ['ScrollViewDemo', 'FetchDemo', 'SectionListExample', 'CommunicateWithAndroid', 'PickerExample','SlideExample'];
+import KeyboardAvoidingViewExample from "./KeyboardAvoidingViewExample";
+const arrays = ['ScrollViewDemo', 'FetchDemo', 'SectionListExample',
+    'CommunicateWithAndroid', 'PickerExample','SlideExample','KeyboardAvoidingViewExample'];
 export default class App extends Component {
 
     renderViewArray() {

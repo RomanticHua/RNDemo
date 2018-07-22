@@ -14,6 +14,7 @@ import SectionListExample from "../example/SectionListExample";
 import CommunicateWithAndroid from "../example/CommunicateWithAndroid";
 import PickerExample from "../example/PickerExample";
 import SlideExample from "../example/SlideExample";
+import KeyboardAvoidingViewExample from "../example/KeyboardAvoidingViewExample";
 
 export default RootStackNavigator = createStackNavigator({
     FirstPage,
@@ -23,6 +24,7 @@ export default RootStackNavigator = createStackNavigator({
     CommunicateWithAndroid,
     PickerExample,
     SlideExample,
+    KeyboardAvoidingViewExample,
 }, {
     navigationOptions: {
         header: null
