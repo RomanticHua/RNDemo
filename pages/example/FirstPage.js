@@ -5,20 +5,29 @@
  */
 
 import React, {Component} from 'react';
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    ScrollView,
-    View, Button, StatusBar
-} from 'react-native';
-import ScrollViewDemo from "./ScrollViewDemo";
-import SectionListExample from "./SectionListExample";
-import CommunicateWithAndroid from "./CommunicateWithAndroid";
-
+import {Button, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+const arrays = ['ScrollViewDemo', 'FetchDemo', 'SectionListExample', 'CommunicateWithAndroid', 'PickerExample','SlideExample'];
 export default class App extends Component {
-    render() {
+
+    renderViewArray() {
         const {navigate} = this.props.navigation;
+        let viewArray = [];
+        arrays.forEach((value, index) => {
+            let item = <View style={styles.item} key={index}>
+                <Button
+                    title={value}
+                    onPress={() => {
+                        navigate(value);
+                    }}
+                />
+            </View>;
+            viewArray.push(item);
+        });
+        return viewArray;
+    }
+
+    render() {
+
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -31,36 +40,7 @@ export default class App extends Component {
                 </StatusBar>
 
                 <ScrollView style={styles.container}>
-                    <Button
-                        title={'ScrollViewDemo'}
-                        onPress={() => {
-                            navigate('ScrollViewDemo');
-                        }}
-                    />
-                    <View style={styles.item}>
-                        <Button
-                            title={'FetchDemo'}
-                            onPress={() => {
-                                navigate('FetchDemo');
-                            }}
-                        />
-                    </View>
-                    <View style={styles.item}>
-                        <Button
-                            title={'SectionListExample'}
-                            onPress={() => {
-                                navigate('SectionListExample');
-                            }}
-                        />
-                    </View>
-                    <View style={styles.item}>
-                        <Button
-                            title={'CommunicateWithAndroid'}
-                            onPress={() => {
-                                navigate('CommunicateWithAndroid');
-                            }}
-                        />
-                    </View>
+                    {this.renderViewArray()}
                 </ScrollView>
             </View>
         );

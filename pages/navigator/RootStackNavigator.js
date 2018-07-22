@@ -12,13 +12,17 @@ import ScrollViewDemo from "../example/ScrollViewDemo";
 import FetchDemo from "../example/FetchDemo";
 import SectionListExample from "../example/SectionListExample";
 import CommunicateWithAndroid from "../example/CommunicateWithAndroid";
+import PickerExample from "../example/PickerExample";
+import SlideExample from "../example/SlideExample";
 
 export default RootStackNavigator = createStackNavigator({
-    FirstPage: FirstPage,
-    ScrollViewDemo: ScrollViewDemo,
-    FetchDemo: FetchDemo,
-    SectionListExample:SectionListExample,
-    CommunicateWithAndroid:CommunicateWithAndroid,
+    FirstPage,
+    ScrollViewDemo,
+    FetchDemo,
+    SectionListExample,
+    CommunicateWithAndroid,
+    PickerExample,
+    SlideExample,
 }, {
     navigationOptions: {
         header: null

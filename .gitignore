@@ -24,12 +24,12 @@ project.xcworkspace
 
 # Android/IntelliJ
 #
-build/
+
 .idea
 .gradle
 local.properties
 *.iml
-
+/android/gradlew.bat
 # node.js
 #
 node_modules/

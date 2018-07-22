@@ -1,12 +1,15 @@
+
+
 import React, {Component} from 'react';
 import {
     Platform,
     StyleSheet,
     Text,
-    View
+    View,
+    Slider
 } from 'react-native';
 
-export default class App extends Component<> {
+export default class SlideExample extends Component<> {
     constructor(props) {
         super(props);
         this.state = {}
@@ -15,7 +18,7 @@ export default class App extends Component<> {
     render() {
         return (
             <View style={styles.container}>
-
+                <Slider/>
             </View>
         );
     }
