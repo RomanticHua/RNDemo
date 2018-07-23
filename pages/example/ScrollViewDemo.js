@@ -49,18 +49,18 @@ export default class ScrollViewDemo extends Component {
                 >
                 </StatusBar>
                 <ScrollView style={styles.container}
-                            showsVerticalScrollIndicator={true}
+                            showsVerticalScrollIndicator={true}  /*是否显示右侧滑动指示条*/
                     /*onMomentumScrollStart={this._onMomentumScrollStart}*/ /*这个属性设置了没用*/
-                            onMomentumScrollEnd={this._onMomentumScrollEnd}
-                            onScroll={this._onScroll()}
+                            onMomentumScrollEnd={this._onMomentumScrollEnd} //滑动结束
+                            onScroll={this._onScroll()}  /*这个也没有调用*/
                     /*horizontal={true}*/ /*水平滑动*/
                             refreshControl={
                                 <RefreshControl
                                     refreshing={false}
                                     onRefresh={this._onRefresh}
                                     colors={['red', 'green', 'blue']}
-                                    title={'正在刷新...'}
-                                    tintColor={'red'}
+                                    title={'正在刷新...'} /*ios属性*/
+                                    tintColor={'red'}   /*ios属性*/
                                 />
                             }
 
