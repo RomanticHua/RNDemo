@@ -7,14 +7,16 @@
 import React, {Component} from 'react';
 import {createStackNavigator} from 'react-navigation';
 
-import FirstPage from "../example/FirstPage";
-import ScrollViewDemo from "../example/ScrollViewDemo";
-import FetchDemo from "../example/FetchDemo";
-import SectionListExample from "../example/SectionListExample";
-import CommunicateWithAndroid from "../example/CommunicateWithAndroid";
-import PickerExample from "../example/PickerExample";
-import SlideExample from "../example/SlideExample";
-import KeyboardAvoidingViewExample from "../example/KeyboardAvoidingViewExample";
+import FirstPage from "../example/pages/FirstPage";
+import ScrollViewDemo from "../example/pages/ScrollViewDemo";
+import FetchDemo from "../example/pages/FetchDemo";
+import SectionListExample from "../example/pages/SectionListExample";
+import CommunicateWithAndroid from "../example/pages/CommunicateWithAndroid";
+import PickerExample from "../example/pages/PickerExample";
+import SlideExample from "../example/pages/SlideExample";
+import KeyboardAvoidingViewExample from "../example/pages/KeyboardAvoidingViewExample";
+import ReduxDemo from "../example/ReduxDemo";
+
 
 export default RootStackNavigator = createStackNavigator({
     FirstPage,
@@ -25,6 +27,8 @@ export default RootStackNavigator = createStackNavigator({
     PickerExample,
     SlideExample,
     KeyboardAvoidingViewExample,
+    ReduxDemo,
+
 }, {
     navigationOptions: {
         header: null

@@ -7,8 +7,12 @@
 import React, {Component} from 'react';
 import {Button, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import KeyboardAvoidingViewExample from "./KeyboardAvoidingViewExample";
+
 const arrays = ['ScrollViewDemo', 'FetchDemo', 'SectionListExample',
-    'CommunicateWithAndroid', 'PickerExample','SlideExample','KeyboardAvoidingViewExample'];
+    'CommunicateWithAndroid', 'PickerExample','SlideExample','KeyboardAvoidingViewExample',
+    'ReduxDemo'
+
+];
 export default class App extends Component {
 
     renderViewArray() {
