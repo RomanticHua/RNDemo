@@ -82,4 +82,4 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps)(ReduxDemo);
+// export default connect(mapStateToProps)(ReduxDemo);

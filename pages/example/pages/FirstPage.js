@@ -1,16 +1,10 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {Component} from 'react';
 import {Button, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import KeyboardAvoidingViewExample from "./KeyboardAvoidingViewExample";
 
 const arrays = ['ScrollViewDemo', 'FetchDemo', 'SectionListExample',
-    'CommunicateWithAndroid', 'PickerExample','SlideExample','KeyboardAvoidingViewExample',
-    'ReduxDemo'
+    'CommunicateWithAndroid', 'PickerExample', 'SlideExample', 'KeyboardAvoidingViewExample',
+    'BottomNavigator'
 
 ];
 export default class App extends Component {
@@ -44,7 +38,6 @@ export default class App extends Component {
                     //barStyle={'default'} // enum('default', 'light-content', 'dark-content')//状态栏字体颜色
                 >
                 </StatusBar>
-
                 <ScrollView style={styles.container}>
                     {this.renderViewArray()}
                 </ScrollView>

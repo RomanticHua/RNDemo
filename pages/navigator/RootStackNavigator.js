@@ -1,11 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {Component} from 'react';
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 import FirstPage from "../example/pages/FirstPage";
 import ScrollViewDemo from "../example/pages/ScrollViewDemo";
@@ -15,7 +9,8 @@ import CommunicateWithAndroid from "../example/pages/CommunicateWithAndroid";
 import PickerExample from "../example/pages/PickerExample";
 import SlideExample from "../example/pages/SlideExample";
 import KeyboardAvoidingViewExample from "../example/pages/KeyboardAvoidingViewExample";
-import ReduxDemo from "../example/ReduxDemo";
+import BottomNavigator from "./BottomNavigator";
+
 
 
 export default RootStackNavigator = createStackNavigator({
@@ -27,7 +22,7 @@ export default RootStackNavigator = createStackNavigator({
     PickerExample,
     SlideExample,
     KeyboardAvoidingViewExample,
-    ReduxDemo,
+    BottomNavigator,
 
 }, {
     navigationOptions: {
