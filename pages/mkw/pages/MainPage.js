@@ -5,7 +5,7 @@ import {
     Text,
     View
 } from 'react-native';
-export  {BottomNavigator} from '../navigator/RootStackNavigator'
+export  {BottomNavigator} from '../../navigator/RootStackNavigator'
 
 export default class App extends Component<> {
     constructor(props) {

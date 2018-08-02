@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {createBottomTabNavigator} from "react-navigation";
-import Popular from "../mkw/Popular";
-import Trending from "../mkw/Trending";
-import Favorite from "../mkw/Favorite";
-import My from "../mkw/My";
+import Popular from "../mkw/pages/Popular";
+import Trending from "../mkw/pages/Trending";
+import Favorite from "../mkw/pages/Favorite";
+import My from "../mkw/pages/My";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
