@@ -43,7 +43,12 @@ export default class LoadingModal extends Component<> {
                 onRequestClose={() => {
                 }}
             >
-                <View style={styles.container}>
+                <View style={styles.container}
+                      onPress={() => {/*点击加载圈,隐藏加载对话圈*/
+                          this.hide();
+                          console.log('关闭加载圈');
+                      }}
+                >
                     <View style={styles.view_shadow}>
                         <ActivityIndicator
                             animating={true}
@@ -63,6 +68,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+
     },
     view_shadow: {
         borderRadius: 10,
