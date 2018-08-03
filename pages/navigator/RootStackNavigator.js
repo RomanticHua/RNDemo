@@ -12,6 +12,7 @@ import KeyboardAvoidingViewExample from "../example/pages/KeyboardAvoidingViewEx
 import BottomNavigator from "./BottomNavigator";
 import MyPage from "../mkw/pages/MyPage";
 import CustomKeyPage from "../mkw/pages/CustomKeyPage";
+import SortKeyPage from "../mkw/pages/SortKeyPage";
 
 
 
@@ -27,6 +28,7 @@ export default RootStackNavigator = createStackNavigator({
     BottomNavigator,
     MyPage,
     CustomKeyPage,
+    SortKeyPage,
 
 
 }, {
