@@ -10,6 +10,8 @@ import PickerExample from "../example/pages/PickerExample";
 import SlideExample from "../example/pages/SlideExample";
 import KeyboardAvoidingViewExample from "../example/pages/KeyboardAvoidingViewExample";
 import BottomNavigator from "./BottomNavigator";
+import MyPage from "../mkw/pages/MyPage";
+import CustomKeyPage from "../mkw/pages/CustomKeyPage";
 
 
 
@@ -23,6 +25,9 @@ export default RootStackNavigator = createStackNavigator({
     SlideExample,
     KeyboardAvoidingViewExample,
     BottomNavigator,
+    MyPage,
+    CustomKeyPage,
+
 
 }, {
     navigationOptions: {

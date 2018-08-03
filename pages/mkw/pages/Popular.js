@@ -12,7 +12,10 @@ import {
 import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-view";
 import DataRepository from "../expand/dao/DataRepository";
 import LoadingModal from "../../tyzg/util/LoadingModal";
-import RepositoryCell from "./RepositoryCell";
+import RepositoryCell from "../view/RepositoryCell";
+import Constant from "../../tyzg/util/Constant";
+import CustomTitle from "../view/CustomTitle";
+import FirstPage from "../../example/pages/FirstPage";
 
 function getUrl(query) {
     return 'https://api.github.com/search/repositories?q=' + query + '&sort=stars';
@@ -23,9 +26,16 @@ export default class Popular extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <CustomTitle title={'主页'}
+                             onBackPress={() => {
+                                 this.props.navigation.navigate('FirstPage')
+                             }}
+                             customBackgroundColor={Constant.mainColor}
+                             showLeftView={false}
+                />
                 <ScrollableTabView
                     renderTabBar={() => <ScrollableTabBar/>}
-                    tabBarBackgroundColor={'#0000AA'}
+                    tabBarBackgroundColor={Constant.mainColor}
                     tabBarActiveTextColor={'white'}
                     tabBarInactiveTextColor={'mintcream'}
                     tabBarUnderlineStyle={styles.tab_bar_underline}
@@ -46,7 +56,7 @@ class PopularTab extends Component {
         super(props);
         this.state = {
             data: '',
-            refreshing:false,
+            refreshing: false,
         };
         this.dataRepository = new DataRepository();
     }
@@ -59,7 +69,7 @@ class PopularTab extends Component {
     loadData() {
         let url = getUrl(this.props.tabLabel);
         this.setState({
-            refreshing:true,
+            refreshing: true,
         });
         this.dataRepository.fetchNetRepository(url)
             .then(result => {
@@ -71,9 +81,9 @@ class PopularTab extends Component {
                 Alert.alert(JSON.stringify(error));
             })
             .finally(() => {
-               this.setState({
-                   refreshing:false,
-               });
+                this.setState({
+                    refreshing: false,
+                });
             })
     }
 
@@ -92,7 +102,7 @@ class PopularTab extends Component {
                     renderItem={info => this._renderItem(info)}
                     data={this.state.data}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
-                    onRefresh={()=>this.loadData()}
+                    onRefresh={() => this.loadData()}
                     refreshing={this.state.refreshing}
                 />
 
@@ -107,9 +117,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    tab_bar_underline:{
-        backgroundColor:'#e7e7e7',
-        height:2,
+    tab_bar_underline: {
+        backgroundColor: '#e7e7e7',
+        height: 2,
     }
 
 });
