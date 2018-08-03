@@ -6,6 +6,7 @@ import {
     View
 } from 'react-native';
 import CustomKeyPage from "./CustomKeyPage";
+import CustomTitle from "../view/CustomTitle";
 
 export default class MyPage extends Component<> {
     constructor(props) {
@@ -16,11 +17,14 @@ export default class MyPage extends Component<> {
     render() {
         return (
             <View style={styles.container}>
+                <CustomTitle title={'我的标签'}
+                             {...this.props}/>
                 <Text
-                    onPress={()=>{
+                    onPress={() => {
                         this.props.navigation.navigate('CustomKeyPage');
                     }}
-                >我的</Text>
+                >我的标签</Text>
+
             </View>
         );
     }

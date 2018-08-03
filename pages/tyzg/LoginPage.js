@@ -91,7 +91,7 @@ export default class LoginPage extends Component<> {
                 console.log(data);
                 // alert(data.telephone);
                 //存储token
-                AsyncStorageUtil.set(Constant.login.token, data.apptoken);
+                AsyncStorageUtil.set(Constant.LOGIN.TOKEN, data.apptoken);
             })
             .catch(error => {
                 alert(error);
@@ -182,7 +182,7 @@ export default class LoginPage extends Component<> {
                         <Text style={styles.text_protocol}>已阅读用户协议</Text>
                     </View>
                     <TouchableOpacity
-                        activeOpacity={Constant.activeOpacity}
+                        activeOpacity={Constant.ACTIVE_OPACITY}
                         onPress={() => this.forgetPassword()}
                     >
                         <Text style={styles.text_protocol}>忘记密码</Text>
@@ -191,7 +191,7 @@ export default class LoginPage extends Component<> {
                 </View>
 
                 <TouchableOpacity
-                    activeOpacity={Constant.activeOpacity}
+                    activeOpacity={Constant.ACTIVE_OPACITY}
                     style={styles.view_login}
                 >
                     <Text style={styles.text_login}

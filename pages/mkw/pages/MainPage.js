@@ -10,7 +10,7 @@ import {
 import Constant from "../../tyzg/util/Constant";
 import CustomTitle from "../view/CustomTitle";
 
-export {BottomNavigator} from '../../navigator/RootStackNavigator'
+export BottomNavigator from '../../navigator/RootStackNavigator'
 
 export default class MainPage extends Component<> {
     constructor(props) {
@@ -21,7 +21,6 @@ export default class MainPage extends Component<> {
     render() {
         return (
             <View style={styles.container}>
-                <CustomTitle title={'主页'} onBackPress={Alert.alert('返回')} customBackgroundColor={Constant.mainColor}/>
                 <View style={styles.container}>
                     {BottomNavigator}
                 </View>

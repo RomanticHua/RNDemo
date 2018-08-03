@@ -17,17 +17,17 @@ export default class PickerExample extends Component<> {
     constructor(props) {
         super(props);
         this.state = {
-            language: '',
+            LANGUAGE: '',
         }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>语言格式为:{this.state.language}</Text>
+                <Text style={styles.text}>语言格式为:{this.state.LANGUAGE}</Text>
                 <Picker
-                    selectedValue={this.state.language}
-                    onValueChange={(lang) => this.setState({language: lang})}>
+                    selectedValue={this.state.LANGUAGE}
+                    onValueChange={(lang) => this.setState({LANGUAGE: lang})}>
                     <Picker.Item label="Java" value="java"/>
                     <Picker.Item label="JavaScript" value="js"/>
                 </Picker>

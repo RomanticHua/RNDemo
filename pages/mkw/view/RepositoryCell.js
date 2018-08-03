@@ -26,7 +26,7 @@ export default class RepositoryCell extends Component<> {
             avatar_url = item.owner.avatar_url;
         }
         return <TouchableOpacity
-            activeOpacity={Constant.activeOpacity}
+            activeOpacity={Constant.ACTIVE_OPACITY}
             style={styles.container}
         >
             <View style={styles.cell_container}>

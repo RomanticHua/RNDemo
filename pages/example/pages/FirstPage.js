@@ -3,11 +3,12 @@ import {Button, ScrollView, StatusBar, StyleSheet, View, Alert} from 'react-nati
 import KeyboardAvoidingViewExample from "./KeyboardAvoidingViewExample";
 import Constant from "../../tyzg/util/Constant";
 import CustomTitle from "../../mkw/view/CustomTitle";
+import MyPage from "../../mkw/pages/MyPage";
 
 
 const arrays = ['ScrollViewDemo', 'FetchDemo', 'SectionListExample',
     'CommunicateWithAndroid', 'PickerExample', 'SlideExample', 'KeyboardAvoidingViewExample',
-    'BottomNavigator'
+    'BottomNavigator','MyPage',
 
 ];
 export default class FirstPage extends Component {

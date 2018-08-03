@@ -18,19 +18,34 @@ export default class CustomTitle extends Component {
 
     static  defaultProps = {
         title: '',
-        customBackgroundColor: 'blue',
+        customBackgroundColor: Constant.MAIN_COLOR,
         showLeftView: true,
-        onBackPress: () => {
-        },
     };
     static propTypes = {
         title: PropTypes.string.isRequired,
         customBackgroundColor: PropTypes.string,
-        onBackPress: PropTypes.func,
         rightView: PropTypes.element,
         showLeftView: PropTypes.bool,
         leftView: PropTypes.element,
+        onBackClick:PropTypes.func,
     };
+
+    /**
+     * 返回函数
+     */
+    onBackPress() {
+        //是否有自定义返回函数,有的话,只执行自定义
+        let onBackClick=this.props.onBackClick;
+        if(onBackClick){
+            onBackClick();
+            return ;
+        }
+        //默认执行关闭页面操作
+        let navigation = this.props.navigation;
+        if (navigation) {
+            navigation.goBack();
+        }
+    }
 
     /**
      * 左侧视图构建
@@ -49,11 +64,11 @@ export default class CustomTitle extends Component {
         //返回默认的左侧布局,一个返回按钮
         return (
             <TouchableOpacity
-                activeOpacity={Constant.activeOpacity}
-                onPress={() => this.props.onBackPress()}
+                activeOpacity={Constant.ACTIVE_OPACITY}
+                onPress={() => this.onBackPress()}
                 style={styles.touchable_back}
             >
-                <Icon name={'angle-left'} size={22} color={'#6B6B6B'}/>
+                <Icon name={'angle-left'} size={25} color={'white'}/>
             </TouchableOpacity>
 
         );
@@ -65,7 +80,7 @@ export default class CustomTitle extends Component {
                 <StatusBar
                     // animated={true} //指定状态栏的变化是否应以动画形式呈现。目前支持这几种样式：backgroundColor, barStyle和hidden
                     hidden={false}  //是否隐藏状态栏。
-                    backgroundColor={Constant.mainColor} //状态栏的背景色
+                    backgroundColor={Constant.MAIN_COLOR} //状态栏的背景色
                     //translucent={true}//指定状态栏是否透明。设置为true时，应用会在状态栏之下绘制（即所谓“沉浸式”——被状态栏遮住一部分）。常和带有半透明背景色的状态栏搭配使用。
                     //barStyle={'default'} // enum('default', 'light-content', 'dark-content')//状态栏字体颜色
                 >
@@ -90,6 +105,7 @@ const styles = StyleSheet.create({
     container: {
         height: 40,
         justifyContent: 'center',
+        alignItems:'center',
     },
     back: {
         width: 40,
@@ -111,19 +127,14 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         color: 'white',
-        left: 50,
-        right: 50,
-        top: 0,
-        bottom: 0,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        position: 'absolute',
     },
     right_view: {
         right: 5,
         top: 0,
         bottom: 0,
         position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
 });
