@@ -73,18 +73,19 @@ export default class CustomKeyPage extends Component<> {
         } else {
             Alert.alert('提示', '是否保存修改', [
                 {
+                    text: '取消',
+                    onPress: () => {
+                        this.props.navigation.pop();
+                    }
+                },
+                {
                     text: '确定',
                     onPress: () => {
                         this.languageDao.save(this.state.languageArray);
                         this.props.navigation.pop();
                     }
-                },
-                {
-                    text: '取消',
-                    onPress: () => {
-                        this.props.navigation.pop();
-                    }
                 }
+
             ])
         }
     }
@@ -109,6 +110,9 @@ export default class CustomKeyPage extends Component<> {
      * checkbox点击事件
      */
     onClick(data) {
+        if (!data) {
+            return;
+        }
         data.checked = !data.checked;
         //用一个set来存储改变的数据,因为点击两次就是复原,如果有的话,代表点击过一次,直接删除这个元素
         //如果之前没有点击过,那么set中没有这个数据,因此这个条目改变了.
@@ -120,6 +124,9 @@ export default class CustomKeyPage extends Component<> {
     }
 
     renderCheckBox(data) {
+        if(!data){
+            return;
+        }
         let leftText = data.name;
         return (
             <CheckBox
@@ -140,9 +147,11 @@ export default class CustomKeyPage extends Component<> {
      */
     renderItem() {
         let languageArray = this.state.languageArray;
+        console.log(languageArray);
         if (!languageArray || languageArray.length === 0) {
             return;
         }
+        console.log(languageArray);
         let views = [];
         for (let i = 0; i < languageArray.length - 1; i += 2) {
             views.push(
@@ -190,7 +199,7 @@ const styles = StyleSheet.create({
         height: 0.5,
     },
     check_box: {
-        flex: 1,
+        width: '50%',
         padding: 10,
     },
 

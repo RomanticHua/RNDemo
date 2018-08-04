@@ -12,6 +12,7 @@ import Constant from "../../tyzg/util/Constant";
 
 import SortableListView from 'react-native-sortable-listview'
 import SortCell from "./SortCell";
+import ArrayUtils from "../util/ArrayUtils";
 
 export default class SortKeyPage extends Component<> {
     constructor(props) {
@@ -31,6 +32,51 @@ export default class SortKeyPage extends Component<> {
     componentDidMount() {
         this.loadData();
     }
+    _onBackClick(){
+        if (ArrayUtils.isEqual(this.originalCheckedArray,this.state.checkedArray)) {
+            this.props.navigation.pop();
+        } else {
+            Alert.alert('提示', '是否保存修改', [
+                {
+                    text: '取消',
+                    onPress: () => {
+                        this.props.navigation.pop();
+                    }
+                },
+                {
+                    text: '确定',
+                    onPress: () => {
+                        this.saveAndPop();
+                    }
+                }
+
+            ])
+        }
+    }
+    onSave(){
+        if(ArrayUtils.isEqual(this.originalCheckedArray,this.state.checkedArray)){
+            this.props.navigation.pop();
+            return ;
+        }
+       this.saveAndPop();
+    }
+    saveAndPop(){
+        this.getSortResult();
+        this.languageDao.save(this.sortResultArray);
+        this.props.navigation.pop();
+    }
+    getSortResult(){
+        this.sortResultArray=this.dataArray.slice(0);
+        for (let i = 0; i < this.originalCheckedArray.length; i++) {
+            let item =this.originalCheckedArray[i];
+            let index=this.dataArray.indexOf(item);
+            this.sortResultArray.splice(index,1,this.state.checkedArray[i]);
+        }
+    }
+    renderRightView(){
+        return <Text style={styles.right_view}
+                     onPress={() => this.onSave()}>保存</Text>
+    }
 
     render() {
         return (
@@ -38,13 +84,15 @@ export default class SortKeyPage extends Component<> {
                 <CustomTitle
                     {...this.props}
                     title={'自定义标签页'}
+                    onBackClick={()=>this._onBackClick()} //这里是绑定函数,传递函数过去
+                    rightView={this.renderRightView()} //这里只是得到函数返回的结果
                   />
                 <SortableListView
                     style={{ flex: 1 }}
                     data={this.state.checkedArray}
                     order={Object.keys(this.state.checkedArray)}
                     onRowMoved={e => {
-                        order.splice(e.to, 0, this.state.checkedArray.splice(e.from, 1)[0])
+                        this.state.checkedArray.splice(e.to, 0, this.state.checkedArray.splice(e.from, 1)[0]);
                         this.forceUpdate()
                     }}
                     renderRow={row => <SortCell data={row} />}
@@ -72,8 +120,9 @@ export default class SortKeyPage extends Component<> {
         let checkedArray=result.filter(value=>value.checked);
         this.setState({
             checkedArray:checkedArray,
-        })
+        });
         this.originalCheckedArray=checkedArray.slice(0);
+
     }
 
 
@@ -84,5 +133,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
+    right_view: {
+        color: 'white',
+        fontSize: 16,
+    },
 });
