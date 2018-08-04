@@ -13,6 +13,7 @@ import BottomNavigator from "./BottomNavigator";
 import MyPage from "../mkw/pages/MyPage";
 import CustomKeyPage from "../mkw/pages/CustomKeyPage";
 import SortKeyPage from "../mkw/pages/SortKeyPage";
+import RepositoryDetail from "../mkw/pages/RepositoryDetail";
 
 
 
@@ -29,6 +30,7 @@ export default RootStackNavigator = createStackNavigator({
     MyPage,
     CustomKeyPage,
     SortKeyPage,
+    RepositoryDetail,
 
 
 }, {

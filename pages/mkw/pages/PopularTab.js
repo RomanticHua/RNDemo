@@ -11,6 +11,7 @@ import {
 import DataRepository from "../expand/dao/DataRepository";
 import {getUrl} from "./Popular";
 import RepositoryCell from "../view/RepositoryCell";
+import RepositoryDetail from "./RepositoryDetail";
 
 export default class PopularTab extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ export default class PopularTab extends Component {
     }
 
     componentDidMount() {
-
         this.loadData();
     }
 
@@ -32,7 +32,7 @@ export default class PopularTab extends Component {
         this.setState({
             refreshing: true,
         });
-        this.dataRepository.fetchNetRepository(url)
+        this.dataRepository.fetchRepository(url)
             .then(result => {
                 this.setState({
                     data: result.items,
@@ -48,8 +48,13 @@ export default class PopularTab extends Component {
             })
     }
 
+    onItemClick(item) {
+        console.log(this.props.navigation);
+        this.props.navigation.navigate('RepositoryDetail', {item: item})
+    }
+
     _renderItem({item}) {
-        return <RepositoryCell item={item}/>
+        return <RepositoryCell item={item} onItemClick={() => this.onItemClick(item)}/>
     }
 
     _keyExtractor(item, index) {

@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Constant from "../../tyzg/util/Constant";
 
+const MAX_TITLE_LENGTH = 20;
 export default class CustomTitle extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +28,7 @@ export default class CustomTitle extends Component {
         rightView: PropTypes.element,
         showLeftView: PropTypes.bool,
         leftView: PropTypes.element,
-        onBackClick:PropTypes.func,
+        onBackClick: PropTypes.func,
     };
 
     /**
@@ -35,10 +36,10 @@ export default class CustomTitle extends Component {
      */
     onBackPress() {
         //是否有自定义返回函数,有的话,只执行自定义
-        let onBackClick=this.props.onBackClick;
-        if(onBackClick){
+        let onBackClick = this.props.onBackClick;
+        if (onBackClick) {
             onBackClick();
-            return ;
+            return;
         }
         //默认执行关闭页面操作
         let navigation = this.props.navigation;
@@ -75,6 +76,12 @@ export default class CustomTitle extends Component {
     }
 
     render() {
+        let title = this.props.title;
+        if (title.length > MAX_TITLE_LENGTH) {
+            title = title.substr(0, MAX_TITLE_LENGTH);
+            title+='...';
+        }
+
         return (
             <View>
                 <StatusBar
@@ -90,7 +97,7 @@ export default class CustomTitle extends Component {
                     <View style={styles.back}>
                         {this.renderDefaultLeftView()}
                     </View>
-                    <Text style={styles.title}>{this.props.title}</Text>
+                    <Text style={styles.title}>{title}</Text>
                     <View style={styles.right_view}>
                         {this.props.rightView}
                     </View>
@@ -105,7 +112,8 @@ const styles = StyleSheet.create({
     container: {
         height: 40,
         justifyContent: 'center',
-        alignItems:'center',
+        alignItems: 'center',
+        alignSelf:'stretch',
     },
     back: {
         width: 40,
@@ -127,6 +135,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         color: 'white',
+
     },
     right_view: {
         right: 5,

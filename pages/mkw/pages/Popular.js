@@ -57,7 +57,10 @@ export default class Popular extends Component {
                                 return null;
                             }
                             else {
-                                return (<PopularTab key={index} tabLabel={value.name}>{value.name}></PopularTab>)
+                                return (
+                                    <PopularTab key={index}
+                                                tabLabel={value.name}
+                                                {...this.props}>{value.name}</PopularTab>)
                             }
                         })
                     }

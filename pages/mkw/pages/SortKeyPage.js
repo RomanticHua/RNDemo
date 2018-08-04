@@ -22,8 +22,8 @@ export default class SortKeyPage extends Component<> {
         };
         this.languageDao = new LanguageDao(Constant.KEY.LANGUAGE);
         this.dataArray=[];//数据库中所有标签数组
-        this.sortResultArray=[];//排序之后新生产的数组
-        this.originalCheckedArray=[];//上一次排序的顺序
+        this.sortResultArray=[];//排序之后新生产的数组,最终的排序结果
+        this.originalCheckedArray=[];//保存初始已订阅标签数组,用来判断标签顺序是否发生改变.
     }
 
     /**
@@ -32,6 +32,31 @@ export default class SortKeyPage extends Component<> {
     componentDidMount() {
         this.loadData();
     }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <CustomTitle
+                    {...this.props}
+                    title={'自定义标签页'}
+                    onBackClick={()=>this._onBackClick()} //这里是绑定函数,传递函数过去
+                    rightView={this.renderRightView()} //这里只是得到函数返回的结果
+                />
+                <SortableListView
+                    style={{ flex: 1 }}
+                    data={this.state.checkedArray}
+                    order={Object.keys(this.state.checkedArray)}
+                    onRowMoved={e => {
+                        this.state.checkedArray.splice(e.to, 0, this.state.checkedArray.splice(e.from, 1)[0]);
+                        this.forceUpdate()//强制刷新
+                    }}
+                    renderRow={row => <SortCell data={row} />}
+                />
+            </View>
+
+        );
+    }
+
     _onBackClick(){
         if (ArrayUtils.isEqual(this.originalCheckedArray,this.state.checkedArray)) {
             this.props.navigation.pop();
@@ -60,11 +85,19 @@ export default class SortKeyPage extends Component<> {
         }
        this.saveAndPop();
     }
+
+    /**
+     * 保存并退出
+     */
     saveAndPop(){
         this.getSortResult();
         this.languageDao.save(this.sortResultArray);
         this.props.navigation.pop();
     }
+
+    /**
+     * 得到最终的结果
+     */
     getSortResult(){
         this.sortResultArray=this.dataArray.slice(0);
         for (let i = 0; i < this.originalCheckedArray.length; i++) {
@@ -78,29 +111,6 @@ export default class SortKeyPage extends Component<> {
                      onPress={() => this.onSave()}>保存</Text>
     }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <CustomTitle
-                    {...this.props}
-                    title={'自定义标签页'}
-                    onBackClick={()=>this._onBackClick()} //这里是绑定函数,传递函数过去
-                    rightView={this.renderRightView()} //这里只是得到函数返回的结果
-                  />
-                <SortableListView
-                    style={{ flex: 1 }}
-                    data={this.state.checkedArray}
-                    order={Object.keys(this.state.checkedArray)}
-                    onRowMoved={e => {
-                        this.state.checkedArray.splice(e.to, 0, this.state.checkedArray.splice(e.from, 1)[0]);
-                        this.forceUpdate()
-                    }}
-                    renderRow={row => <SortCell data={row} />}
-                />
-            </View>
-
-        );
-    }
 
     /**
      * 加载language数据
@@ -115,13 +125,16 @@ export default class SortKeyPage extends Component<> {
             });
     }
 
+    /**
+     * 初始化数据
+     */
     getCheckedItems(result){
         this.dataArray=result;
-        let checkedArray=result.filter(value=>value.checked);
+        let checkedArray=result.filter(value=>value.checked);//得到已订阅的数组
         this.setState({
             checkedArray:checkedArray,
         });
-        this.originalCheckedArray=checkedArray.slice(0);
+        this.originalCheckedArray=checkedArray.slice(0);//复制数组
 
     }
 
