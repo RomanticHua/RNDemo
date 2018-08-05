@@ -49,7 +49,6 @@ export default class PopularTab extends Component {
     }
 
     onItemClick(item) {
-        console.log(this.props.navigation);
         this.props.navigation.navigate('RepositoryDetail', {item: item})
     }
 

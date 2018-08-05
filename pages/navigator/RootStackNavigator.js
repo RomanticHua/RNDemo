@@ -14,6 +14,9 @@ import MyPage from "../mkw/pages/MyPage";
 import CustomKeyPage from "../mkw/pages/CustomKeyPage";
 import SortKeyPage from "../mkw/pages/SortKeyPage";
 import RepositoryDetail from "../mkw/pages/RepositoryDetail";
+import ArrayExample from "../example/pages/ArrayExample";
+import StringExample from "../example/pages/StringExample";
+import PrototypeExample from "../example/pages/PrototypeExample";
 
 
 
@@ -31,6 +34,9 @@ export default RootStackNavigator = createStackNavigator({
     CustomKeyPage,
     SortKeyPage,
     RepositoryDetail,
+    ArrayExample,
+    StringExample,
+    PrototypeExample,
 
 
 }, {

@@ -1,18 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {Component} from 'react';
 import {
     ActivityIndicator,
     Modal,
     Platform,
     StyleSheet,
-    Text,
+    Text, TouchableOpacity,
+    TouchableWithoutFeedback,
     View
 } from 'react-native';
+import Constant from "./Constant";
 
 export default class LoadingModal extends Component<> {
     constructor(props) {
@@ -41,14 +37,18 @@ export default class LoadingModal extends Component<> {
                 transparent={true}
                 visible={this.state.visible}
                 onRequestClose={() => {
+                    this.hide();//这里必须设置,否则不能关闭
                 }}
             >
-                <View style={styles.container}
-                      onPress={() => {/*点击加载圈,隐藏加载对话圈*/
-                          this.hide();
-                          console.log('关闭加载圈');
-                      }}
+                {/*这里必须使用TouchableOpacity 否则点击没有取消的效果 */}
+
+                <TouchableOpacity style={styles.container}
+                                  activeOpacity={1}
+                                  onPressIn={() => {
+                                      this.hide();
+                                  }}
                 >
+
                     <View style={styles.view_shadow}>
                         <ActivityIndicator
                             animating={true}
@@ -56,7 +56,7 @@ export default class LoadingModal extends Component<> {
                             size={'large'}
                         />
                     </View>
-                </View>
+                </TouchableOpacity>
 
             </Modal>
         );
@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-
+        backgroundColor:'#0006'
     },
     view_shadow: {
         borderRadius: 10,
-        backgroundColor: '#0006',
+        backgroundColor: '#0009',
         width: 70,
         height: 70,
         alignItems: 'center',

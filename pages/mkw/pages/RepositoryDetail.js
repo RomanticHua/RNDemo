@@ -26,7 +26,6 @@ export default class RepositoryDetail extends Component {
     _onNavigationStateChange(navState) {
         this.setState({
             canGoBack: navState.canGoBack,
-            url: navState.url,
         });
     }
 
