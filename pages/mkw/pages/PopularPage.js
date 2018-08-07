@@ -12,21 +12,19 @@ import {
 import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-view";
 import DataRepository from "../expand/dao/DataRepository";
 import LoadingModal from "../../tyzg/util/LoadingModal";
-import RepositoryCell from "../view/RepositoryCell";
+import PopularCell from "../view/PopularCell";
 import Constant from "../../tyzg/util/Constant";
 import CustomTitle from "../view/CustomTitle";
 import FirstPage from "../../example/pages/FirstPage";
 import PopularTab from "./PopularTab";
 import LanguageDao from "../expand/dao/LanguageDao";
 
-export function getUrl(query) {
-    return 'https://api.github.com/search/repositories?q=' + query + '&sort=stars';
-}
 
-export default class Popular extends Component {
+
+export default class PopularPage extends Component {
     constructor(props) {
         super(props);
-        this.language = new LanguageDao(Constant.KEY.LANGUAGE);
+        this.language = new LanguageDao(Constant.FLAG_LANGUAGE.POPULAR);
         this.state = {
             language: [],
         }

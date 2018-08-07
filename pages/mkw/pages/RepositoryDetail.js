@@ -31,14 +31,15 @@ export default class RepositoryDetail extends Component {
 
     render() {
         const {params} = this.props.navigation.state;
-        let item = params.item;
+        let url = params.url;
+        let title = params.title;
         return (
             <View style={styles.container}>
-                <CustomTitle title={item.name} onBackClick={() => this._onBackClick()}/>
+                <CustomTitle title={title} onBackClick={() => this._onBackClick()}/>
                 <WebView
                     ref={webView => this.webView = webView}
                     style={styles.webView}
-                    source={{uri: item.html_url}}//url地址
+                    source={{uri: url}}//url地址
                     startInLoadingState={true}//强制WebView在第一次加载时先显示loading视图。默认为true
                     scalesPageToFit={true}//设置是否要把网页缩放到适应视图的大小，以及是否允许用户改变缩放比例
                     onNavigationStateChange={(navState) => this._onNavigationStateChange(navState)}//状态发生改变的时候调用

@@ -8,9 +8,16 @@ const Constant = {
     LOGIN: {
         TOKEN: 'token',//token存储的key
     },
-    KEY: {
-        LANGUAGE: 'language',
+    FLAG_LANGUAGE: {
+        POPULAR: 'popular',
+        TRENDING: 'trending',
     },
-    DATA_CACHE_VALID_TIME: 10 * 60 * 1000,//数据缓存的有效时间
+    TRENDING_CATEGORY: [
+        {key: 'daily', value: '今天'},
+        {key: 'weekly', value: '本周'},
+        {key: 'monthly', value: '本月'}
+    ],
+
+    DATA_CACHE_VALID_TIME: 6 * 60 * 60 * 1000,//数据缓存的有效时间 6个小时
 };
 export default Constant;

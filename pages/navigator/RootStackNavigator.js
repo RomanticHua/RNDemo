@@ -17,6 +17,9 @@ import RepositoryDetail from "../mkw/pages/RepositoryDetail";
 import ArrayExample from "../example/pages/ArrayExample";
 import StringExample from "../example/pages/StringExample";
 import PrototypeExample from "../example/pages/PrototypeExample";
+import LayoutExample1 from "../example/pages/LayoutExample1";
+import LayoutExample2 from "../example/pages/LayoutExample2";
+import LayoutExample3 from "../example/pages/LayoutExample3";
 
 
 
@@ -37,6 +40,9 @@ export default RootStackNavigator = createStackNavigator({
     ArrayExample,
     StringExample,
     PrototypeExample,
+    LayoutExample1,
+    LayoutExample2,
+    LayoutExample3,
 
 
 }, {

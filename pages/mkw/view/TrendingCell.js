@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Constant from "../../tyzg/util/Constant";
+import HTMLView from "react-native-htmlview";
 
-export default class RepositoryCell extends Component<> {
+export default class TrendingCell extends Component<> {
     constructor(props) {
         super(props);
     }
@@ -17,14 +18,12 @@ export default class RepositoryCell extends Component<> {
     render() {
         let item = this.props.item;
         let description = item.description || '';
-        let full_name = item.full_name || '';
-        let avatar_url = '';
-        let stargazers_count = item.stargazers_count || '';
+        let full_name = item.fullName || '';
+        let contributors = item.contributors || [];
+        let stargazers_count = item.meta || '';
         stargazers_count = 'Stars：' + stargazers_count;
-        //数据非空判断
-        if (item.owner) {
-            avatar_url = item.owner.avatar_url;
-        }
+
+        description = '<p>' + description + '</p>';
         return <TouchableOpacity
             onPress={this.props.onItemClick}
             activeOpacity={Constant.ACTIVE_OPACITY}
@@ -32,17 +31,38 @@ export default class RepositoryCell extends Component<> {
         >
             <View style={styles.cell_container}>
                 <Text style={styles.full_name}>{full_name}</Text>
-                <Text style={styles.description}>{description} </Text>
+                <View style={styles.description}>
+                    <HTMLView
+                        value={description}
+                        stylesheet={{
+                            a: {
+                                fontSize: 14,
+                                color: '#757575',
+                            },
+                            p: {
+                                fontSize: 14,
+                                color: '#757575',
+                            }
+                        }}
+                    />
+                </View>
+                <Text style={styles.stargazers_count}>{stargazers_count}</Text>
                 <View style={[styles.row, styles.view_star]}>
                     <View style={[styles.row, styles.center]}>
-                        <Text>Author：</Text>
-                        <Image
-                            style={styles.stargazers}
-                            source={{uri: avatar_url}}
-                        />
+                        <Text>Build By：</Text>
+                        {
+                            contributors.map((value, index) => {
+                                return <Image
+                                    key={index}
+                                    style={styles.stargazers}
+                                    source={{uri: value}}
+                                />
+                            })
+                        }
+
                     </View>
 
-                    <Text>{stargazers_count}</Text>
+
                     <Icon name={'star'} size={22} color={'#f00'}/>
                 </View>
             </View>
@@ -65,7 +85,7 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         borderColor: '#dddddd',
 
-        //android
+        //ios
         shadowColor: 'gray',
         shadowOffset: {width: 0.5, height: 0.5},
         shadowOpacity: 0.4,
@@ -79,6 +99,9 @@ const styles = StyleSheet.create({
         marginBottom: 2,
     },
     description: {
+        marginBottom: 2,
+    },
+    stargazers_count: {
         fontSize: 14,
         color: '#757575',
         marginBottom: 2,
@@ -97,7 +120,6 @@ const styles = StyleSheet.create({
     stargazers: {
         width: 22,
         height: 22,
-
     },
 
 

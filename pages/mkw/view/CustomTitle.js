@@ -29,6 +29,7 @@ export default class CustomTitle extends Component {
         showLeftView: PropTypes.bool,
         leftView: PropTypes.element,
         onBackClick: PropTypes.func,
+        titleView: PropTypes.element,
     };
 
     /**
@@ -75,12 +76,29 @@ export default class CustomTitle extends Component {
         );
     }
 
-    render() {
+    /**
+     * 构建默认的标题栏布局
+     * @returns {*}
+     */
+    renderDefaultTitleView() {
+        let titleView = this.props.titleView;
+        if (titleView) {
+            return titleView;
+        }
+        //获取标题,如果标题太长,截取部分显示
         let title = this.props.title;
         if (title.length > MAX_TITLE_LENGTH) {
             title = title.substr(0, MAX_TITLE_LENGTH);
-            title+='...';
+            title += '...';
         }
+        return (
+            <Text style={styles.title}
+            >{title}</Text>
+        );
+    }
+
+    render() {
+
 
         return (
             <View>
@@ -97,7 +115,7 @@ export default class CustomTitle extends Component {
                     <View style={styles.back}>
                         {this.renderDefaultLeftView()}
                     </View>
-                    <Text style={styles.title}>{title}</Text>
+                    {this.renderDefaultTitleView()}
                     <View style={styles.right_view}>
                         {this.props.rightView}
                     </View>
@@ -113,7 +131,7 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf:'stretch',
+        alignSelf: 'stretch',
     },
     back: {
         width: 40,

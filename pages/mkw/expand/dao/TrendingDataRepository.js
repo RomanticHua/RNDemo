@@ -3,13 +3,14 @@ import {
 } from 'react-native';
 import {AsyncStorageUtil} from "../../../tyzg/util/AsyncStorageUtil";
 import Constant from "../../../tyzg/util/Constant";
+import GitHubTrending from "GitHubTrending/trending/GitHubTrending";
 
 const TIP_OVERTIME = '超过缓存时间,从服务器获取最新数据';
 const TIP_LOAD_DATA_FROM_LOCAL = '从本地加载数据';
 const TIP_LOAD_DATA_FROM_NET = '从网络获取数据';
 const TIP_NO_DATA_LOCAL = '本地无数据';
 
-export default class DataRepository {
+export default class TrendingDataRepository {
     /**
      * 加载数据,先从本地加载,如果本地没有数据,或者超过缓存是时间,那么从网络获取.
      */
@@ -47,20 +48,22 @@ export default class DataRepository {
      */
     fetchNetRepository(url) {
         return new Promise(((resolve, reject) => {
-            fetch(url)
-                .then(response => response.json())
-                .then(result => {
+            new GitHubTrending().fetchTrending(url)
+                .then((result) => {
                     if (!result) {
                         reject('数据为空!');
                         return;
                     }
                     resolve(result);
                     this.saveToLocal(url, result);
+
                 })
-                .catch(error => reject(error))
+                .catch((error) => {
+                    reject(error)
+                })
                 .finally(() => {
                     console.log(TIP_LOAD_DATA_FROM_NET);
-                })
+                });
 
         }))
     }

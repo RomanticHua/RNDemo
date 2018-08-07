@@ -7,38 +7,43 @@ import {
     Alert,
     FlatList,
 } from 'react-native';
-
-import DataRepository from "../expand/dao/DataRepository";
-import {getUrl} from "./PopularPage";
-import PopularCell from "../view/PopularCell";
 import RepositoryDetail from "./RepositoryDetail";
+import TrendingDataRepository from "../expand/dao/TrendingDataRepository";
+import Constant from "../../tyzg/util/Constant";
+import TrendingCell from "../view/TrendingCell";
 
-
-export default class PopularTab extends Component {
+export default class TrendingTab extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: '',
+            data: [],
             refreshing: false,
         };
-        this.dataRepository = new DataRepository();
+        this.dataRepository = new TrendingDataRepository();
+        this.type=Constant.TRENDING_CATEGORY[0].key;
     }
 
     componentDidMount() {
         this.loadData();
+        console.log('TrendingTab componentDidMount');
     }
-    getUrl(query) {
-        return 'https://api.github.com/search/repositories?q=' + query + '&sort=stars';
+    setType(type){
+        this.type=type;
     }
+    getUrl(language, type) {
+        return 'https://github.com/trending/' + language + '?since=' + type;
+    }
+
     loadData() {
-        let url = this.getUrl(this.props.tabLabel);
+        let url = this.getUrl(this.props.tabLabel, this.type);
+        console.log(this.type);
         this.setState({
             refreshing: true,
         });
         this.dataRepository.fetchRepository(url)
             .then(result => {
                 this.setState({
-                    data: result.items,
+                    data: result,
                 });
             })
             .catch(error => {
@@ -52,11 +57,13 @@ export default class PopularTab extends Component {
     }
 
     onItemClick(item) {
-        this.props.navigation.navigate('RepositoryDetail', {title: item.name, url: item.html_url})
+        let url = 'https://github.com/' + item.fullName;
+        this.props.navigation.navigate('RepositoryDetail', {title: item.fullName, url: url})
     }
 
+
     _renderItem({item}) {
-        return <PopularCell item={item} onItemClick={() => this.onItemClick(item)}/>
+        return <TrendingCell item={item} onItemClick={() => this.onItemClick(item)}/>
     }
 
     _keyExtractor(item, index) {

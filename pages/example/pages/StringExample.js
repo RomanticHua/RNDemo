@@ -77,6 +77,28 @@ export default class StringExample extends Component {
 
     }
 
+    judgeObject() {
+        let obj = {name: 'jin'};
+        if (typeof obj === 'object') {//这种方式对象和数组都返回true.
+            console.log('对象');
+        } else {
+            console.log('数组');
+        }
+
+        if (typeof [] === 'object') {
+            console.log('对象22');
+        } else {
+            console.log('数组22');
+        }
+
+    }
+
+    judgeArray() {
+        let array = [1, 2, 3];
+        console.log(Array.isArray(array));//用来判断是否是数组,对象返回false
+        console.log(Array.isArray({jin: 'jin'}));
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -104,6 +126,14 @@ export default class StringExample extends Component {
                     title={'显示modal'}
                     onPress={() => this.showModal()}
                 />
+                <Button
+                    title={'判断对象'}
+                    onPress={() => this.judgeObject()}
+                />
+                <Button
+                    title={'判断数组'}
+                    onPress={() => this.judgeArray()}
+                />
 
 
                 <LoadingModal
@@ -114,10 +144,11 @@ export default class StringExample extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+const
+    styles = StyleSheet.create({
+        container: {
+            flex: 1,
 
-    },
+        },
 
-});
+    });

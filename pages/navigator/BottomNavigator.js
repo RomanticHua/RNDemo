@@ -1,24 +1,25 @@
 import React, {Component} from 'react';
 import {createBottomTabNavigator} from "react-navigation";
-import Popular from "../mkw/pages/Popular";
+import PopularPage from "../mkw/pages/PopularPage";
 import Trending from "../mkw/pages/Trending";
 import Favorite from "../mkw/pages/Favorite";
 import My from "../mkw/pages/My";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import TrendingPage from "../mkw/pages/TrendingPage";
 
 const ICON_SIZE = 20;
 export default BottomNavigator = createBottomTabNavigator(
     {
-        Popular: {
-            screen: Popular,
+        PopularPage: {
+            screen: PopularPage,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name={'rocket'} size={ICON_SIZE} color={tintColor}/>,
                 tabBarLabel: '热门',
             }
         },
-        Trending: {
-            screen: Trending,
+        TrendingPage: {
+            screen: TrendingPage,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name={'address-book'} size={ICON_SIZE} color={tintColor}/>,
                 tabBarLabel: '趋势',

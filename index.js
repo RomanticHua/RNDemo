@@ -11,6 +11,7 @@ import {Provider} from "react-redux";
 import React from "react";
 import RootStackNavigator from "./pages/navigator/RootStackNavigator";
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+YellowBox.ignoreWarnings(['Remote debugger is in a background tab ', 'Module RCTImageLoader']);
 
 class ReduxDemo extends Component {
     render() {

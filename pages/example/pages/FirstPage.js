@@ -11,6 +11,10 @@ import PrototypeExample from "./PrototypeExample";
 
 const colors = ['#FF6347', '#FF7F24', '#D15FEE', '#CD0000', '#9ACD32', '#76EE00', '#40E0D0', '#00EE00'];
 const arrays = [
+    {name: 'BottomNavigator案例', key: 'BottomNavigator'},
+    {name: '布局demo1', key: 'LayoutExample1'},
+    {name: '布局demo2', key: 'LayoutExample2'},
+    {name: '布局demo3', key: 'LayoutExample3'},
     {name: 'ScrollView案例', key: 'ScrollViewDemo'},
     {name: 'Fetch案例', key: 'FetchDemo'},
     {name: 'SectionList案例', key: 'SectionListExample'},
@@ -18,22 +22,24 @@ const arrays = [
     {name: 'Picker案例', key: 'PickerExample'},
     {name: 'Slide案例', key: 'SlideExample'},
     {name: 'KeyboardAvoidingView案例', key: 'KeyboardAvoidingViewExample'},
-    {name: 'BottomNavigator案例', key: 'BottomNavigator'},
     {name: 'MyPage案例', key: 'MyPage'},
     {name: '标签分类', key: 'SortKeyPage'},
     {name: 'Array案例', key: 'ArrayExample'},
     {name: 'String案例', key: 'StringExample'},
     {name: 'Prototype案例', key: 'PrototypeExample'},
-]
+
+];
 export default class FirstPage extends Component {
 
     /**
      * 生成随机颜色
      * @returns {string}
      */
-    getBackgroundColor() {
-        let index = parseInt(Math.random() * colors.length);
-        return colors[index];
+    getBackgroundColor(index) {
+        // let index = parseInt(Math.random() * colors.length);
+        // return colors[index];
+
+        return colors[index % colors.length];
     }
 
     renderViewArray() {
@@ -41,7 +47,7 @@ export default class FirstPage extends Component {
         let viewArray = [];
         arrays.forEach((item, index) => {
             let marginTop = index === 0 ? 0 : 10;
-            let backgroundColor = this.getBackgroundColor();
+            let backgroundColor = this.getBackgroundColor(index);
             viewArray.push(
                 <Text
                     style={[styles.item, {marginTop: marginTop, backgroundColor: backgroundColor}]}

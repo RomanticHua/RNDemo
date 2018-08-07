@@ -19,7 +19,7 @@ export default class CustomKeyPage extends Component<> {
         this.state = {
             languageArray: [],
         };
-        this.languageDao = new LanguageDao(Constant.KEY.LANGUAGE);
+        this.languageDao = new LanguageDao(Constant.FLAG_LANGUAGE.POPULAR);
         this.changeValueSet = new Set();
     }
 
