@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import CustomTitle from "../view/CustomTitle";
 
-export default class RepositoryDetail extends Component {
+export default class WebViewPage extends Component {
     constructor(props) {
         super(props);
         this.state = {

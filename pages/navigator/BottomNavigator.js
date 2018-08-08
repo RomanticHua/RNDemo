@@ -7,6 +7,7 @@ import My from "../mkw/pages/My";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TrendingPage from "../mkw/pages/TrendingPage";
+import TrendingPage2 from "../mkw/pages/TrendingPage2";
 
 const ICON_SIZE = 20;
 export default BottomNavigator = createBottomTabNavigator(
@@ -19,7 +20,7 @@ export default BottomNavigator = createBottomTabNavigator(
             }
         },
         TrendingPage: {
-            screen: TrendingPage,
+            screen: TrendingPage2,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name={'address-book'} size={ICON_SIZE} color={tintColor}/>,
                 tabBarLabel: '趋势',

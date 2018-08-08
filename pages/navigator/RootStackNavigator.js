@@ -13,14 +13,13 @@ import BottomNavigator from "./BottomNavigator";
 import MyPage from "../mkw/pages/MyPage";
 import CustomKeyPage from "../mkw/pages/CustomKeyPage";
 import SortKeyPage from "../mkw/pages/SortKeyPage";
-import RepositoryDetail from "../mkw/pages/RepositoryDetail";
+import WebViewPage from "../mkw/pages/WebViewPage";
 import ArrayExample from "../example/pages/ArrayExample";
 import StringExample from "../example/pages/StringExample";
 import PrototypeExample from "../example/pages/PrototypeExample";
 import LayoutExample1 from "../example/pages/LayoutExample1";
-import LayoutExample2 from "../example/pages/LayoutExample2";
+import ConstructorExample from "../example/pages/ConstructorExample";
 import LayoutExample3 from "../example/pages/LayoutExample3";
-
 
 
 export default RootStackNavigator = createStackNavigator({
@@ -36,12 +35,12 @@ export default RootStackNavigator = createStackNavigator({
     MyPage,
     CustomKeyPage,
     SortKeyPage,
-    RepositoryDetail,
+    WebViewPage,
     ArrayExample,
     StringExample,
     PrototypeExample,
     LayoutExample1,
-    LayoutExample2,
+    ConstructorExample,
     LayoutExample3,
 
 

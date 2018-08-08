@@ -10,25 +10,20 @@ import {
 } from 'react-native';
 
 import ScrollableTabView, {ScrollableTabBar} from "react-native-scrollable-tab-view";
-import DataRepository from "../expand/dao/DataRepository";
-import LoadingModal from "../../tyzg/util/LoadingModal";
-import PopularCell from "../view/PopularCell";
+
 import Constant from "../../tyzg/util/Constant";
 import CustomTitle from "../view/CustomTitle";
-import FirstPage from "../../example/pages/FirstPage";
-import PopularTab from "./PopularTab";
 import LanguageDao from "../expand/dao/LanguageDao";
 import TrendingTab from "./TrendingTab";
-import TrendTimeModal from "./TrendTimeModal";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TimeSpan from "../model/TimeSpan";
-import {Popover} from "../view/Popover";
+import Popover from "../view/Popover";
 
 
-const timeSpanArray=[
-    new TimeSpan('今天','daily'),
-    new TimeSpan('本周','weekly'),
-    new TimeSpan('本月','monthly')
+const timeSpanArray = [
+    new TimeSpan('今天', 'daily'),
+    new TimeSpan('本周', 'weekly'),
+    new TimeSpan('本月', 'monthly')
 ];
 export default class TrendingPage extends Component {
 
@@ -39,7 +34,7 @@ export default class TrendingPage extends Component {
             language: [],
             item: Constant.TRENDING_CATEGORY[0],
             isVisible: false,
-            buttonRect: {}
+            buttonRect: {x: 0, y: 0, width: 0, height: 0}
         };
         this.tabArray = [];
     }
@@ -48,19 +43,13 @@ export default class TrendingPage extends Component {
         this.loadData();
     }
 
-    /**
-     * 点击标题,弹出时间选择框
-     */
-    _onTitleClick() {
-
-
-    }
 
     renderTitleView() {
         return (
             <TouchableOpacity
+                ref='button'
                 activeOpacity={Constant.ACTIVE_OPACITY}
-                style={styles.view_title} onPress={() => this._onTitleClick()}>
+                style={styles.view_title} onPress={() => this.showPopover()}>
                 <View style={{flexDirection: 'row'}}>
                     <Text style={styles.title}>{'趋势'}</Text>
                     <Icon name={'sort-down'} size={18} color={'white'} style={{marginLeft: 10}}/>
@@ -110,12 +99,12 @@ export default class TrendingPage extends Component {
                     {
                         this.state.language.map((value, index) => {
                             if (value.checked) {
-                               return(
+                                return (
                                     <TrendingTab key={index}
                                                  tabLabel={value.name}
                                                  {...this.props}>{value.name}</TrendingTab>
                                 );
-                            }else{
+                            } else {
                                 return null
                             }
 
@@ -151,6 +140,7 @@ export default class TrendingPage extends Component {
     closePopover() {
         this.setState({isVisible: false});
     }
+
     loadData() {
         this.language.fetch()
             .then(result => {

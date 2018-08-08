@@ -11,7 +11,7 @@ import {
 import DataRepository from "../expand/dao/DataRepository";
 import {getUrl} from "./PopularPage";
 import PopularCell from "../view/PopularCell";
-import RepositoryDetail from "./RepositoryDetail";
+import WebViewPage from "./WebViewPage";
 
 
 export default class PopularTab extends Component {
@@ -52,7 +52,7 @@ export default class PopularTab extends Component {
     }
 
     onItemClick(item) {
-        this.props.navigation.navigate('RepositoryDetail', {title: item.name, url: item.html_url})
+        this.props.navigation.navigate('WebViewPage', {title: item.name, url: item.html_url})
     }
 
     _renderItem({item}) {

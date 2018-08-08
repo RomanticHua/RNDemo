@@ -13,6 +13,24 @@ import HTMLView from "react-native-htmlview";
 export default class TrendingCell extends Component<> {
     constructor(props) {
         super(props);
+        this.state = {
+            isCollected: false,
+            collectIcon: require('../../../res/image/ic_unstar_transparent.png')
+        };
+    }
+
+    collect() {
+        let collectIcon;
+        if (this.state.isCollected) {
+            collectIcon = require('../../../res/image/ic_unstar_transparent.png');
+        } else {
+            collectIcon = require('../../../res/image/ic_star.png');
+        }
+
+        this.setState({
+            isCollected: !this.state.isCollected,
+            collectIcon: collectIcon,
+        })
     }
 
     render() {
@@ -61,9 +79,12 @@ export default class TrendingCell extends Component<> {
                         }
 
                     </View>
+                    <TouchableOpacity activeOpacity={Constant.ACTIVE_OPACITY}
+                                      onPress={() => this.collect()}
+                    >
+                        <Image source={this.state.collectIcon} style={[styles.icon, {tintColor: Constant.MAIN_COLOR}]}/>
+                    </TouchableOpacity>
 
-
-                    <Icon name={'star'} size={22} color={'#f00'}/>
                 </View>
             </View>
         </TouchableOpacity>
@@ -121,6 +142,9 @@ const styles = StyleSheet.create({
         width: 22,
         height: 22,
     },
-
+    icon: {
+        height: 20,
+        width: 20,
+    }
 
 });

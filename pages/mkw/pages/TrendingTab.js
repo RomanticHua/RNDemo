@@ -7,9 +7,8 @@ import {
     Alert,
     FlatList,
 } from 'react-native';
-import RepositoryDetail from "./RepositoryDetail";
+import WebViewPage from "./WebViewPage";
 import TrendingDataRepository from "../expand/dao/TrendingDataRepository";
-import Constant from "../../tyzg/util/Constant";
 import TrendingCell from "../view/TrendingCell";
 
 export default class TrendingTab extends Component {
@@ -20,23 +19,36 @@ export default class TrendingTab extends Component {
             refreshing: false,
         };
         this.dataRepository = new TrendingDataRepository();
-        this.type=Constant.TRENDING_CATEGORY[0].key;
     }
 
+    /**
+     * 组件加载完成之后加载数据
+     */
     componentDidMount() {
         this.loadData();
-        console.log('TrendingTab componentDidMount');
     }
-    setType(type){
-        this.type=type;
+
+    /**
+     * 上个界面通过state来传递props,在这里判断,如果上次的type和本次即将更新的type不同则更新
+     * @param nextProps 即将更新的props this.props是旧的props
+     */
+    componentWillReceiveProps(nextProps) {
+        if (this.props.type !== nextProps.type) {
+            this.loadData(nextProps.type);
+        }
+
     }
+
     getUrl(language, type) {
         return 'https://github.com/trending/' + language + '?since=' + type;
     }
 
-    loadData() {
-        let url = this.getUrl(this.props.tabLabel, this.type);
-        console.log(this.type);
+    /**
+     * 加载数据
+     * @param type 默认值为 this.props.type
+     */
+    loadData(type = this.props.type) {
+        let url = this.getUrl(this.props.tabLabel, type);
         this.setState({
             refreshing: true,
         });
@@ -56,9 +68,13 @@ export default class TrendingTab extends Component {
             })
     }
 
+    /**
+     * 点击条目,跳转到webView界面
+     * @param item
+     */
     onItemClick(item) {
         let url = 'https://github.com/' + item.fullName;
-        this.props.navigation.navigate('RepositoryDetail', {title: item.fullName, url: url})
+        this.props.navigation.navigate('WebViewPage', {title: item.fullName, url: url})
     }
 
 
@@ -69,6 +85,7 @@ export default class TrendingTab extends Component {
     _keyExtractor(item, index) {
         return index + '';
     }
+
 
     render() {
         return (
