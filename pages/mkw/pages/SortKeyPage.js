@@ -20,7 +20,7 @@ export default class SortKeyPage extends Component<> {
         this.state = {
             checkedArray:[],//已订阅的标签数组
         };
-        this.languageDao = new LanguageDao(Constant.FLAG_LANGUAGE.POPULAR);
+        this.languageDao = new LanguageDao(this.props.navigation.getParam('language'));
         this.dataArray=[];//数据库中所有标签数组
         this.sortResultArray=[];//排序之后新生产的数组,最终的排序结果
         this.originalCheckedArray=[];//保存初始已订阅标签数组,用来判断标签顺序是否发生改变.

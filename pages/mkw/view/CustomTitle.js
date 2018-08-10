@@ -44,9 +44,7 @@ export default class CustomTitle extends Component {
         }
         //默认执行关闭页面操作
         let navigation = this.props.navigation;
-        if (navigation) {
-            navigation.goBack();
-        }
+        navigation && navigation.goBack();
     }
 
     /**
@@ -128,18 +126,17 @@ export default class CustomTitle extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 40,
+        height: Constant.TITLE_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'stretch',
     },
     back: {
-        width: 40,
+        width: Constant.ICON_WIDTH,
         left: 0,
         top: 0,
         bottom: 0,
         position: 'absolute',
-
     },
     touchable_back: {
         position: 'absolute',

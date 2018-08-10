@@ -8,6 +8,7 @@ import My from "../mkw/pages/My";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TrendingPage from "../mkw/pages/TrendingPage";
 import TrendingPage2 from "../mkw/pages/TrendingPage2";
+import MinePage from "../mkw/pages/MinePage";
 
 const ICON_SIZE = 20;
 export default BottomNavigator = createBottomTabNavigator(
@@ -33,8 +34,8 @@ export default BottomNavigator = createBottomTabNavigator(
                 tabBarLabel: '喜欢',
             }
         },
-        My: {
-            screen: My,
+        MyPage: {
+            screen: MinePage,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name={'apple'} size={ICON_SIZE} color={tintColor}/>,
                 tabBarLabel: '我的',

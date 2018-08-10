@@ -10,7 +10,6 @@ import PickerExample from "../example/pages/PickerExample";
 import SlideExample from "../example/pages/SlideExample";
 import KeyboardAvoidingViewExample from "../example/pages/KeyboardAvoidingViewExample";
 import BottomNavigator from "./BottomNavigator";
-import MyPage from "../mkw/pages/MyPage";
 import CustomKeyPage from "../mkw/pages/CustomKeyPage";
 import SortKeyPage from "../mkw/pages/SortKeyPage";
 import WebViewPage from "../mkw/pages/WebViewPage";
@@ -20,6 +19,8 @@ import PrototypeExample from "../example/pages/PrototypeExample";
 import LayoutExample1 from "../example/pages/LayoutExample1";
 import ConstructorExample from "../example/pages/ConstructorExample";
 import LayoutExample3 from "../example/pages/LayoutExample3";
+import AboutPage from "../mkw/pages/AboutPage";
+import AsyncAwaitExample from "../example/pages/AsyncAwaitExample";
 
 
 export default RootStackNavigator = createStackNavigator({
@@ -32,7 +33,6 @@ export default RootStackNavigator = createStackNavigator({
     SlideExample,
     KeyboardAvoidingViewExample,
     BottomNavigator,
-    MyPage,
     CustomKeyPage,
     SortKeyPage,
     WebViewPage,
@@ -42,7 +42,8 @@ export default RootStackNavigator = createStackNavigator({
     LayoutExample1,
     ConstructorExample,
     LayoutExample3,
-
+    AboutPage,
+    AsyncAwaitExample,
 
 }, {
     navigationOptions: {

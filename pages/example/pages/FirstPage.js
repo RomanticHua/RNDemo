@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
 import {Button, ScrollView, StatusBar, StyleSheet, View, Alert, Text} from 'react-native';
 import KeyboardAvoidingViewExample from "./KeyboardAvoidingViewExample";
-import Constant from "../../tyzg/util/Constant";
-import CustomTitle from "../../mkw/view/CustomTitle";
-import MyPage from "../../mkw/pages/MyPage";
 import SortKeyPage from "../../mkw/pages/SortKeyPage";
 import ArrayExample from "./ArrayExample";
 import StringExample from "./StringExample";
 import PrototypeExample from "./PrototypeExample";
 import ConstructorExample from "./ConstructorExample";
 import CustomKeyPage from "../../mkw/pages/CustomKeyPage";
+import AsyncAwaitExample from "./AsyncAwaitExample";
 
 const colors = ['#FF6347', '#FF7F24', '#D15FEE', '#CD0000', '#9ACD32', '#76EE00', '#40E0D0', '#00EE00'];
 const arrays = [
     {name: 'BottomNavigator案例', key: 'BottomNavigator'},
+    {name: 'Async Await 案例', key: 'AsyncAwaitExample'},
     {name: '标签分类', key: 'SortKeyPage'},
     {name: '自定义标签', key: 'CustomKeyPage'},
     {name: '布局demo1', key: 'LayoutExample1'},
@@ -26,7 +25,6 @@ const arrays = [
     {name: 'Picker案例', key: 'PickerExample'},
     {name: 'Slide案例', key: 'SlideExample'},
     {name: 'KeyboardAvoidingView案例', key: 'KeyboardAvoidingViewExample'},
-    {name: 'MyPage案例', key: 'MyPage'},
     {name: 'Array案例', key: 'ArrayExample'},
     {name: 'String案例', key: 'StringExample'},
     {name: 'Prototype案例', key: 'PrototypeExample'},
@@ -82,7 +80,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     item: {
-
         alignSelf: 'stretch',
         textAlign: 'center',
         textAlignVertical: 'center',

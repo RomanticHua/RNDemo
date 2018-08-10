@@ -19,7 +19,7 @@ export default class CustomKeyPage extends Component<> {
         this.state = {
             languageArray: [],
         };
-        this.languageDao = new LanguageDao(Constant.FLAG_LANGUAGE.POPULAR);
+        this.languageDao = new LanguageDao(this.props.navigation.getParam('language'));
         this.changeValueSet = new Set();
     }
 
