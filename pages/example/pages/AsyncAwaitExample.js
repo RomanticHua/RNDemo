@@ -52,7 +52,6 @@ export default class AsyncAwaitExample extends Component {
     // async 函数返回值会被封装成一个Promise ,因此返回值是异步的.
     //await 只能用在async标记的方法中 async 表示这个方法是异步的,await 来标记等待的代码段.
     //await 会阻塞代码,代码会卡在await那里
-    //如果await 一个普通的方法,那么会顺序执行普通的方法.
     async test() {
         console.log('test start');
         let v1 = await this.getSomething();

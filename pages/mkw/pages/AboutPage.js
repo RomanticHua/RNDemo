@@ -10,7 +10,7 @@ import {
     StyleSheet,
     Text, TouchableOpacity,
     View,
-    Linking,
+    Linking, FlatList, LayoutAnimation,
 } from 'react-native';
 
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
@@ -22,16 +22,42 @@ const window = Dimensions.get('window');
 const AVATAR_SIZE = 120;//图片尺寸
 const PARALLAX_HEADER_HEIGHT = 300;//视差高度
 const STICKY_HEADER_HEIGHT = Constant.TITLE_HEIGHT;//固定头部高度
+const HEADER_PIC = 'http://www.devio.org/io/GitHubPopular/img/for_githubpopular_about_me.jpg';
+const FOREGROUND_PIC = 'https://avatars2.githubusercontent.com/u/8716595?v=4&s=460';
+const FOREGROUND_TXT = '专注于移动开发，分享知识，共享快乐。';
 
 const array = [
-    {icon: require('../../../res/image/ic_computer.png'), txt: 'Website', flag: 'website'},
-    {icon: require('../../../res/image/ic_insert_emoticon.png'), txt: '关于作者', flag: 'about_author'},
-    {icon: require('../../../res/image/ic_feedback.png'), txt: '反馈', flag: 'feedback'},
+
+    {
+        icon: require('../../../res/image/ic_computer.png'), txt: 'Website', flag: 'website', subItems: [
+            {txt: 'A'},
+            {txt: 'B'},
+            {txt: 'C'},
+        ]
+    },
+    {
+        icon: require('../../../res/image/ic_insert_emoticon.png'), txt: '关于作者', flag: 'about_author', subItems: [
+            {txt: 'DD'},
+            {txt: 'EE'},
+            {txt: 'FF'},
+        ]
+
+    },
+    {
+        icon: require('../../../res/image/ic_feedback.png'), txt: '反馈', flag: 'feedback', subItems: [
+            {txt: 'GGGG'},
+            {txt: 'HHHH'},
+            {txt: 'IIII'},
+        ]
+    },
 ];
 
 export default class AboutPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            selectedIndex: -1,
+        }
     }
 
     clickItem(flag) {
@@ -47,22 +73,28 @@ export default class AboutPage extends Component {
                 break;
             // 反馈
             case array[2].flag:
-                let url='tel:18627726763';
-                Linking.canOpenURL(url).then(value=>{
-                    if(value){
-                        Linking.openURL(url);
-                    }else{
-
-                    }
-                });
+                let url = 'tel:18627726763';
+                Linking.canOpenURL(url).then(value => value && Linking.openURL(url));
                 break;
         }
     }
 
-    renderItem({icon, txt, flag}) {
+    /**
+     * 点击标题栏
+     */
+    _onClickTitle(index) {
+        let selectedIndex = this.state.selectedIndex === index ? -1 : index;
+        LayoutAnimation.easeInEaseOut();
+        this.setState({
+            selectedIndex: selectedIndex,
+        });
+    }
+
+    renderTitle({icon, txt}, index) {
+        let img = this.state.selectedIndex === index ? require('../../../res/image/ic_tiaozhuan_down.png') : require('../../../res/image/ic_tiaozhuan.png')
         return (
             <TouchableOpacity activeOpacity={Constant.ACTIVE_OPACITY}
-                              onPress={() => this.clickItem(flag)}
+                              onPress={() => this._onClickTitle(index)}
             >
                 <View style={styles.item_small}>
                     <View style={styles.item_small_left}>
@@ -71,11 +103,30 @@ export default class AboutPage extends Component {
                         />
                         <Text style={styles.item_title}>{txt}</Text>
                     </View>
-                    <Image source={require('../../../res/image/ic_tiaozhuan.png')}
+                    <Image source={img}
                            style={{tintColor: Constant.MAIN_COLOR}}
                     />
                 </View>
             </TouchableOpacity>
+        );
+    }
+
+
+    //布局中使用代码只能用三目运算符,if else 不能使用.
+    _renderItem(item, index) {
+        console.log(item);
+        return (
+
+            <View>
+                {this.renderTitle(item, index)}
+                {this.state.selectedIndex === index ? item.subItems.map((item, index) => {
+                    return (
+                        <Text key={index}
+                              style={{backgroundColor: '#f003', height: 30,}}>{item.txt}</Text>
+                    )
+                }) : null}
+            </View>
+
 
         );
     }
@@ -89,66 +140,99 @@ export default class AboutPage extends Component {
         navigation && navigation.goBack();
     }
 
+    /**
+     * 创建后背景
+     */
+    _renderBackground(url) {
+        return (
+            <View key="background">
+                <Image source={{
+                    uri: url,
+                    width: window.width,
+                    resizeMode: 'contain',
+                    height: PARALLAX_HEADER_HEIGHT
+                }}/>
+                <View style={{
+                    position: 'absolute',
+                    top: 0,
+                    width: window.width,
+                    backgroundColor: 'rgba(0,0,0,.4)',
+                    height: PARALLAX_HEADER_HEIGHT,
+                }}/>
+            </View>
+        );
+    }
+
+    /**
+     * 创建前背景
+     */
+    _renderForeground(url, txt) {
+        return (
+            <View key="parallax-header" style={styles.parallaxHeader}>
+                <Image style={styles.avatar} source={{
+                    uri: url,
+                    width: AVATAR_SIZE,
+                    height: AVATAR_SIZE
+                }}/>
+                <Text style={styles.sectionSpeakerText}>
+                    {txt}
+                </Text>
+
+            </View>
+        );
+    }
+
+    /**
+     * 创建粘性头布局
+     */
+    _renderStickyHeader(txt) {
+        return (
+            <View key="sticky-header" style={styles.stickySection}>
+                <Text style={styles.stickySectionText}>{txt}</Text>
+            </View>
+        );
+    }
+
+    /**
+     * 创建固定的头布局
+     */
+    _renderFixedHeader() {
+        return (
+            <View key="fixed-header" style={styles.back}>
+                <TouchableOpacity
+                    activeOpacity={Constant.ACTIVE_OPACITY}
+                    onPress={() => this.onBackPress()}
+                    style={styles.touchable_back}
+                >
+                    <Icon name={'angle-left'} size={25} color={'white'}/>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
+
+    _keyExtractor(item, index) {
+        return index + '';
+    }
+
     render() {
         return (
             <ParallaxScrollView
                 stickyHeaderHeight={STICKY_HEADER_HEIGHT}
-                parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT-40}
+                parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT - 40}
                 backgroundSpeed={10}
-                renderBackground={() => (
-                    <View key="background">
-                        <Image source={{
-                            uri: 'http://www.devio.org/io/GitHubPopular/img/for_githubpopular_about_me.jpg',
-                            width: window.width,
-                            resizeMode:'contain',
-                            height: PARALLAX_HEADER_HEIGHT
-                        }}/>
-                        <View style={{
-                            position: 'absolute',
-                            top: 0,
-                            width: window.width,
-                            backgroundColor: 'rgba(0,0,0,.4)',
-                            height: PARALLAX_HEADER_HEIGHT,
-                        }}/>
-                    </View>
-                )}
-                renderForeground={() => (
-                    <View key="parallax-header" style={styles.parallaxHeader}>
-                        <Image style={styles.avatar} source={{
-                            uri: 'https://avatars2.githubusercontent.com/u/8716595?v=4&s=460',
-                            width: AVATAR_SIZE,
-                            height: AVATAR_SIZE
-                        }}/>
-                        <Text style={styles.sectionSpeakerText}>
-                            专注于移动开发，分享知识，共享快乐。
-                        </Text>
+                renderBackground={() => this._renderBackground(HEADER_PIC)}
+                renderForeground={() => this._renderForeground(FOREGROUND_PIC, FOREGROUND_TXT)}
+                renderStickyHeader={() => this._renderStickyHeader('Github')}
+                renderFixedHeader={() => this._renderFixedHeader()}>
+                <FlatList
+                    renderItem={({item, index}) => this._renderItem(item, index)}
+                    data={array}
+                    keyExtractor={(item, index) => this._keyExtractor(item, index)}
+                    extraData={this.state.selectedIndex}//指定此属性,表示当state变化是触发FlatList刷新
+                />
 
-                    </View>
-                )}
 
-                renderStickyHeader={() => (
-                    <View key="sticky-header" style={styles.stickySection}>
-                        <Text style={styles.stickySectionText}>Github</Text>
-                    </View>
-                )}
-
-                renderFixedHeader={() => (
-                    <View key="fixed-header" style={styles.back}>
-                        <TouchableOpacity
-                            activeOpacity={Constant.ACTIVE_OPACITY}
-                            onPress={() => this.onBackPress()}
-                            style={styles.touchable_back}
-                        >
-                            <Icon name={'angle-left'} size={25} color={'white'}/>
-                        </TouchableOpacity>
-                    </View>
-                )}>
-                {this.renderItem(array[0])}
-                {ViewRenderUtils.renderLine()}
-                {this.renderItem(array[1])}
-                {ViewRenderUtils.renderLine()}
-                {this.renderItem(array[2])}
-                {ViewRenderUtils.renderLine()}
             </ParallaxScrollView>
 
         );
@@ -189,7 +273,7 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     parallaxHeader: {
-        height:PARALLAX_HEADER_HEIGHT,
+        height: PARALLAX_HEADER_HEIGHT,
         alignItems: 'center',
         flex: 1,
         flexDirection: 'column',

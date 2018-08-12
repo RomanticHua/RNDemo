@@ -51,6 +51,7 @@ export default class TrendingPage2 extends Component {
         return true;
     };
 
+
     componentWillUnmount() {
         this._didFocusSubscription && this._didFocusSubscription.remove();
         this._willBlurSubscription && this._willBlurSubscription.remove();

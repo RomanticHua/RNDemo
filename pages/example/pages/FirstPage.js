@@ -8,10 +8,16 @@ import PrototypeExample from "./PrototypeExample";
 import ConstructorExample from "./ConstructorExample";
 import CustomKeyPage from "../../mkw/pages/CustomKeyPage";
 import AsyncAwaitExample from "./AsyncAwaitExample";
+import AnimationFrameExample from "./AnimationFrameExample";
+import LayoutAnimations from "./LayoutAnimations";
 
 const colors = ['#FF6347', '#FF7F24', '#D15FEE', '#CD0000', '#9ACD32', '#76EE00', '#40E0D0', '#00EE00'];
 const arrays = [
     {name: 'BottomNavigator案例', key: 'BottomNavigator'},
+    {name: 'AnimationFrame案例', key: 'AnimationFrameExample'},
+    {name: 'AboutPage222222', key: 'AboutPage222222'},
+    {name: 'FoldList 案例', key: 'FoldList'},
+    {name: 'LayoutAnimations 案例', key: 'LayoutAnimations'},
     {name: 'Async Await 案例', key: 'AsyncAwaitExample'},
     {name: '标签分类', key: 'SortKeyPage'},
     {name: '自定义标签', key: 'CustomKeyPage'},

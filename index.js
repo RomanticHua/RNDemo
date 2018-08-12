@@ -1,5 +1,5 @@
 import  {Component} from 'react';
-import { AppRegistry ,} from 'react-native';
+import { AppRegistry ,NativeModules} from 'react-native';
 
 
 import { YellowBox } from 'react-native';
@@ -23,4 +23,9 @@ class ReduxDemo extends Component {
         );
     }
 }
+
+// 如果要在Android上使用 LayoutAnimation，那么目前还需要在UIManager中启用
+const { UIManager } = NativeModules;
+UIManager.setLayoutAnimationEnabledExperimental &&
+UIManager.setLayoutAnimationEnabledExperimental(true);
 AppRegistry.registerComponent('RNDemo', () => ReduxDemo);

@@ -21,6 +21,10 @@ import ConstructorExample from "../example/pages/ConstructorExample";
 import LayoutExample3 from "../example/pages/LayoutExample3";
 import AboutPage from "../mkw/pages/AboutPage";
 import AsyncAwaitExample from "../example/pages/AsyncAwaitExample";
+import AnimationFrameExample from "../example/pages/AnimationFrameExample";
+import FoldList from "../example/pages/FoldList";
+import LayoutAnimations from "../example/pages/LayoutAnimations";
+import AboutPage222222 from "../mkw/pages/AboutPage222222";
 
 
 export default RootStackNavigator = createStackNavigator({
@@ -44,11 +48,15 @@ export default RootStackNavigator = createStackNavigator({
     LayoutExample3,
     AboutPage,
     AsyncAwaitExample,
-
+    AnimationFrameExample,
+    FoldList,
+    LayoutAnimations,
+    AboutPage222222,
 }, {
     navigationOptions: {
         header: null
-    }
+    },
+    mode:'card',
 });
 
 
