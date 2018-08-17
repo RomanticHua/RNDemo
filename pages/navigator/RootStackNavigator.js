@@ -25,6 +25,17 @@ import AnimationFrameExample from "../example/pages/AnimationFrameExample";
 import FoldList from "../example/pages/FoldList";
 import LayoutAnimations from "../example/pages/LayoutAnimations";
 import AboutPage222222 from "../mkw/pages/AboutPage222222";
+import ClassExample from "../example/pages/ClassExample";
+import DeviceEventEmitterSendExample from "../example/pages/DeviceEventEmitterSendExample";
+import DeviceEventReceiveExample from "../example/pages/DeviceEventReceiveExample";
+import VideoExample from "../example/pages/VideoExample";
+import InterfaceExample from "../example/pages/InterfaceExample";
+import ExtendExample from "../example/pages/ExtendExample";
+import ClassExtendExample from "../example/pages/ClassExtendExample";
+import CardStackStyleInterpolator from "react-navigation/src/views/StackView/StackViewStyleInterpolator";
+import NavigationExample1 from "../example/navigation/NavigationExample1";
+import NavigationExample2 from "../example/navigation/NavigationExample2";
+import NavigationExample3 from "../example/navigation/NavigationExample3";
 
 
 export default RootStackNavigator = createStackNavigator({
@@ -52,11 +63,33 @@ export default RootStackNavigator = createStackNavigator({
     FoldList,
     LayoutAnimations,
     AboutPage222222,
+    ClassExample,
+    DeviceEventEmitterSendExample,
+    DeviceEventReceiveExample,
+    VideoExample,
+    InterfaceExample,
+    ExtendExample,
+    ClassExtendExample,
+    NavigationExample1,
+    NavigationExample2,
+    NavigationExample3,
 }, {
+    // 不要react-navigation默认的返回条
     navigationOptions: {
         header: null
     },
-    mode:'card',
+
+    // 界面切换动画效果
+    transitionConfig: () => ({
+        /*
+         * forHorizontal  水平 这种效果比较好好
+         * forVertical    垂直
+         * forFadeFromBottomAndroid   看名字应该是只能在android上使用,不设置在andorid上默认是这种效果
+         * forFade   只是透明度变化,效果比较怪异
+         */
+        screenInterpolator: CardStackStyleInterpolator.forHorizontal,
+    })
+
 });
 
 

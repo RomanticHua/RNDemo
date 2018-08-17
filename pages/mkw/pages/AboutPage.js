@@ -114,7 +114,7 @@ export default class AboutPage extends Component {
 
     //布局中使用代码只能用三目运算符,if else 不能使用.
     _renderItem(item, index) {
-        console.log(item);
+
         return (
 
             <View>

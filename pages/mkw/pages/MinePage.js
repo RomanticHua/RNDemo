@@ -55,7 +55,6 @@ export default class MinePage extends Component<> {
     }
 
 
-
     renderGroupTitle(txt) {
         return <Text style={styles.group_title}>{txt}</Text>
     }

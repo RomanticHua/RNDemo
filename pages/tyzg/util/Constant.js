@@ -20,5 +20,6 @@ const Constant = {
     TITLE_HEIGHT:50,//标题高度
     ICON_WIDTH:50,//标题高度
     DATA_CACHE_VALID_TIME: 6 * 60 * 60 * 1000,//数据缓存的有效时间 6个小时
+    REFRESH_DATA:'refresh_data',
 };
 export default Constant;

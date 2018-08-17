@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Alert} from 'react-native';
 import {createBottomTabNavigator} from "react-navigation";
 import PopularPage from "../mkw/pages/PopularPage";
 import Trending from "../mkw/pages/Trending";
@@ -9,6 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import TrendingPage from "../mkw/pages/TrendingPage";
 import TrendingPage2 from "../mkw/pages/TrendingPage2";
 import MinePage from "../mkw/pages/MinePage";
+import Constant from "../tyzg/util/Constant";
 
 const ICON_SIZE = 20;
 export default BottomNavigator = createBottomTabNavigator(
@@ -45,7 +47,7 @@ export default BottomNavigator = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeTintColor: '#1C86EE',
+            activeTintColor: Constant.MAIN_COLOR,
             inactiveTintColor: 'gray',
             style: {
                 backgroundColor: '#fff',

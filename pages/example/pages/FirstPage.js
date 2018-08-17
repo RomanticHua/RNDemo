@@ -10,10 +10,24 @@ import CustomKeyPage from "../../mkw/pages/CustomKeyPage";
 import AsyncAwaitExample from "./AsyncAwaitExample";
 import AnimationFrameExample from "./AnimationFrameExample";
 import LayoutAnimations from "./LayoutAnimations";
+import DeviceEventEmitterSendExample from "./DeviceEventEmitterSendExample";
+import DeviceEventReceiveExample from "./DeviceEventReceiveExample";
+import VideoExample from "./VideoExample";
+import InterfaceExample from "./InterfaceExample";
+import ClassExtendExample from "./ClassExtendExample";
+import NavigationExample1 from "../navigation/NavigationExample1";
 
 const colors = ['#FF6347', '#FF7F24', '#D15FEE', '#CD0000', '#9ACD32', '#76EE00', '#40E0D0', '#00EE00'];
 const arrays = [
     {name: 'BottomNavigator案例', key: 'BottomNavigator'},
+    {name: 'NavigationExample1案例', key: 'NavigationExample1'},
+    {name: 'ClassExtend案例', key: 'ClassExtendExample'},
+    {name: 'Class 案例', key: 'ClassExample'},
+    {name: 'Interface案例', key: 'InterfaceExample'},
+    {name: 'Extend案例', key: 'ExtendExample'},
+    {name: 'Video 案例', key: 'VideoExample'},
+    {name: 'DeviceEventReceiveExample 案例', key: 'DeviceEventReceiveExample'},
+    {name: 'DeviceEventEmitterSendExample 案例', key: 'DeviceEventEmitterSendExample'},
     {name: 'AnimationFrame案例', key: 'AnimationFrameExample'},
     {name: 'AboutPage222222', key: 'AboutPage222222'},
     {name: 'FoldList 案例', key: 'FoldList'},
