@@ -20,6 +20,7 @@ import NavigationExample1 from "../navigation/NavigationExample1";
 const colors = ['#FF6347', '#FF7F24', '#D15FEE', '#CD0000', '#9ACD32', '#76EE00', '#40E0D0', '#00EE00'];
 const arrays = [
     {name: 'BottomNavigator案例', key: 'BottomNavigator'},
+    {name: 'CodePush案例', key: 'CodePushExample'},
     {name: 'TopNavigator案例', key: 'TopNavigator'},
     {name: 'NavigationExample1案例', key: 'NavigationExample1'},
     {name: 'Touch案例', key: 'TouchExample'},
@@ -54,14 +55,7 @@ const arrays = [
 ];
 export default class FirstPage extends Component {
 
-    /**
-     * 生成随机颜色
-     * @returns {string}
-     */
     getBackgroundColor(index) {
-        // let index = parseInt(Math.random() * colors.length);
-        // return colors[index];
-
         return colors[index % colors.length];
     }
 

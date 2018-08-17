@@ -18,12 +18,19 @@ export default class TouchExample extends Component {
     }
 
     componentDidMount() {
-        this.delayHide()
+        this.timer && clearTimeout(this.timer);
+        if (this.state.visible) {
+            this.timer = setTimeout(() => {
+                this.setState({visible: false})
+            }, 3000);
+        }
     }
 
     //Image View 不能响应点击事件.
 
     //能响应点击事件的只有 Touchable 组件和 Text , Button
+
+
     render() {
         let innerView = this.state.visible ?
             <View style={{backgroundColor: 'red', width: 30, height: 30,}}/> : null;
@@ -59,7 +66,12 @@ export default class TouchExample extends Component {
                     activeOpacity={Constant.ACTIVE_OPACITY}
                     onPress={() => {
                         this.setState({visible: !this.state.visible});
-                        this.delayHide();
+                        this.timer && clearTimeout(this.timer);
+                        if (!this.state.visible) {
+                            this.timer = setTimeout(() => {
+                                this.setState({visible: false})
+                            }, 3000);
+                        }
                     }}
                 >
                     <Text>点击</Text>
@@ -69,17 +81,6 @@ export default class TouchExample extends Component {
         );
     }
 
-    /**
-     * 延时隐藏view
-     */
-    delayHide() {
-        this.timer && clearTimeout(this.timer);
-        if (!this.state.visible) {
-            this.timer = setTimeout(() => {
-                this.setState({visible: false})
-            }, 1500);
-        }
-    }
 }
 
 const styles = StyleSheet.create({
