@@ -82,7 +82,14 @@ export default class NavigationExample3 extends Component {
                         navigate('NavigationExample1');
                     }}
                 />
-                
+                <Button
+                    //key是动态变化的.
+                    title={'通过key返回第一个页面'}
+                    onPress={() => {
+                        goBack(state.params.key)
+                    }}
+                />
+
             </View>
         );
     }

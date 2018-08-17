@@ -1,30 +1,20 @@
 import React, {Component} from 'react';
-import {Alert, Text, View} from 'react-native';
-import {createBottomTabNavigator} from "react-navigation";
+import {createBottomTabNavigator, createMaterialTopTabNavigator} from "react-navigation";
 import PopularPage from "../mkw/pages/PopularPage";
-import Trending from "../mkw/pages/Trending";
 import Favorite from "../mkw/pages/Favorite";
-import My from "../mkw/pages/My";
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-import TrendingPage from "../mkw/pages/TrendingPage";
 import TrendingPage2 from "../mkw/pages/TrendingPage2";
 import MinePage from "../mkw/pages/MinePage";
 import Constant from "../tyzg/util/Constant";
-import TabBarComponent from "./TabBarComponent";
+import {Text, View} from "react-native";
 
-const ICON_SIZE = 20;
-export default BottomNavigator = createBottomTabNavigator(
+export default TopNavigator = createMaterialTopTabNavigator(
     {
         PopularPage: {
             screen: PopularPage,
             navigationOptions: {
-                // tabBarIcon: ({tintColor}) => <Icon name={'rocket'} size={ICON_SIZE} color={tintColor}/>,
                 // tabBarLabel: '热门',
-
-                //在这里可以很轻易的自定义Label的样式
-                tabBarLabel: ({focused, tintColor}) => <View
-                    style={{flex: 1, backgroundColor: '#0f04'}}
+                tabBarLabel: ({focused}) => <View
                 >
                     <Text style={{backgroundColor: '#f003', textAlign: 'center', textAlignVertical: 'center'}}>热门</Text>
                     <View style={{backgroundColor: 'black', height: 5, width: '80%'}}/>
@@ -34,16 +24,15 @@ export default BottomNavigator = createBottomTabNavigator(
         TrendingPage: {
             screen: TrendingPage2,
             navigationOptions: {
-                // tabBarIcon: ({tintColor}) => <Icon name={'address-book'} size={ICON_SIZE} color={tintColor}/>,
-                tabBarIcon: null,
-                tabBarLabel: '趋势',
+                tabBarLabel: ({focused, tintColor}) => <Text style={{
+                    fontSize: focused ? 18 : 12,
+                    color: focused ? 'red' : 'blue'
+                }}>趋势</Text>,
             }
         },
         Favorite: {
             screen: Favorite,
             navigationOptions: {
-                // tabBarIcon: ({tintColor}) => <Icon name={'plus-square'} size={ICON_SIZE} color={tintColor}/>,
-                tabBarIcon: null,
                 tabBarLabel: '喜欢',
             },
 
@@ -51,10 +40,9 @@ export default BottomNavigator = createBottomTabNavigator(
         MyPage: {
             screen: MinePage,
             navigationOptions: {
-                // tabBarIcon: ({tintColor}) => <Icon name={'apple'} size={ICON_SIZE} color={tintColor}/>,
-                tabBarIcon: null,
                 tabBarLabel: 'Mine',
                 tabBarOnPress: ({navigation, defaultHandler}) => {
+                    console.log(navigation);
                     console.log('MyPage被点击');
                     /*
                      *  这里可以处理一些自定义逻辑
@@ -67,34 +55,43 @@ export default BottomNavigator = createBottomTabNavigator(
     },
 
     {
-        //todo 如何自定义tabBarComponent
-        /* tabBarComponent: props =>
-             <TabBarComponent
-                 {...props}
-             />,*/
         tabBarOptions: {
             activeTintColor: Constant.MAIN_COLOR,
             inactiveTintColor: 'gray',
+            upperCaseLabel: false,//标签不全部大写
+            showIcon: false,//默认为false,是不显示图片的
+
+            // pressColor: 'red',//material 按下去的颜色
+            indicatorStyle: { //选项卡指示器样式
+                height: 5,
+                backgroundColor: 'red'
+            },
             //标签栏样式
             style: {
                 backgroundColor: 'white',//整个标签栏背景颜色
                 height: 55,//整个标签栏高度
-                borderTopColor: Constant.MAIN_COLOR,//设置顶部的分割线
-                borderTopWidth: 0.5,
             },
             //标签栏文字样式
             labelStyle: {
-                fontSize: 13,//设置文本大小
-                marginBottom: 3,//距离底部距离
+                fontSize: 18,//设置文本大小
+                textAlign:'center',
+                textAlignVertical:'center',
+                backgroundColor:'#f003'
             },
-            showIcon: false,//不显示图标
+            //当tab页面很多的时候设置这个.
+            // scrollEnabled: true,// 是否可以滑动选项卡
+            // tabStyle: { //设置tab选项卡的宽度,如果tab是固定的,这个不需要设置
+            //     width: 150,
+            // },
+
+            tabStyle: {
+                flex: 1,
+                alignItems: 'stretch'
+            },
+
         },
-        /**
-         *  android点击返回时按键处理
-         *  initialRoute 初始界面 默认值
-         *  none         关闭全部tab,返回上个界面
-         */
-        backBehavior: 'none',
+        swipeEnabled: false,//是否允许在标签之间滑动
+        backBehavior: 'none',//按返回键直接返回上个界面.
     }
 )
 ;

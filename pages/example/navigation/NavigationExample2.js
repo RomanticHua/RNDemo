@@ -16,6 +16,13 @@ export default class NavigationExample2 extends Component {
     }
 
     render() {
+        /**
+         * state 里面包含三个参数
+         * key: 上一个界面的key, 这个key是动态生成的,goBack(key)的时候可以指定key,这个方式比较麻烦
+         * params: 开发者自定义的参数
+         * routeName: 当前界面的路由名.
+         */
+
         const {navigation} = this.props;
         const {navigate, goBack, state} = navigation;
         console.log(navigation);
@@ -36,6 +43,13 @@ export default class NavigationExample2 extends Component {
                         navigate('NavigationExample3');
                     }}
                 />
+                <Button
+                    title={'跳转到第三个界面携带key'}
+                    onPress={() => {
+                        navigate('NavigationExample3', {key: state.key});
+                    }}
+                />
+                <Text style={{backgroundColor:'red',fontSize:16}}>我是文本</Text>
 
             </View>
         );

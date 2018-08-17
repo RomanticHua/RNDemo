@@ -36,10 +36,17 @@ import CardStackStyleInterpolator from "react-navigation/src/views/StackView/Sta
 import NavigationExample1 from "../example/navigation/NavigationExample1";
 import NavigationExample2 from "../example/navigation/NavigationExample2";
 import NavigationExample3 from "../example/navigation/NavigationExample3";
+import TopNavigator from "./TopNavigator";
+import TouchExample from "../example/pages/TouchExample";
 
 
 export default RootStackNavigator = createStackNavigator({
-    FirstPage,
+    FirstPage: {
+        screen: FirstPage,
+        navigationOptions: {
+            path: '/pages/example/pages/FirstPage'
+        }
+    },
     ScrollViewDemo,
     FetchDemo,
     SectionListExample,
@@ -73,10 +80,16 @@ export default RootStackNavigator = createStackNavigator({
     NavigationExample1,
     NavigationExample2,
     NavigationExample3,
+    TopNavigator,
+    TouchExample,
 }, {
-    // 不要react-navigation默认的返回条
+
+    headerMode: 'none',// 不要react-navigation默认的返回条
     navigationOptions: {
-        header: null
+        // header: null,// 不要react-navigation默认的返回条,两种方式都可以
+        // todo 手势无效
+        gesturesEnabled: true,
+
     },
 
     // 界面切换动画效果
@@ -88,7 +101,8 @@ export default RootStackNavigator = createStackNavigator({
          * forFade   只是透明度变化,效果比较怪异
          */
         screenInterpolator: CardStackStyleInterpolator.forHorizontal,
-    })
+    }),
+
 
 });
 

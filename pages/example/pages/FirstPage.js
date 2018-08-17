@@ -20,7 +20,9 @@ import NavigationExample1 from "../navigation/NavigationExample1";
 const colors = ['#FF6347', '#FF7F24', '#D15FEE', '#CD0000', '#9ACD32', '#76EE00', '#40E0D0', '#00EE00'];
 const arrays = [
     {name: 'BottomNavigator案例', key: 'BottomNavigator'},
+    {name: 'TopNavigator案例', key: 'TopNavigator'},
     {name: 'NavigationExample1案例', key: 'NavigationExample1'},
+    {name: 'Touch案例', key: 'TouchExample'},
     {name: 'ClassExtend案例', key: 'ClassExtendExample'},
     {name: 'Class 案例', key: 'ClassExample'},
     {name: 'Interface案例', key: 'InterfaceExample'},
