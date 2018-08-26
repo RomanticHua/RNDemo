@@ -7,7 +7,8 @@ import {
     Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {addTodo, reduceTodo, updateText} from './Actions';
+import {addTodo, reduceTodo, updateText, delayUpdateAction, delayAdd} from './Actions';
+import delayUpdateRedux from "./DelayUpdate";
 
 const {width, height} = Dimensions.get('window');
 
@@ -17,9 +18,11 @@ class ReduxDemo extends Component {
     }
 
     render() {
-        const {dispatch, counter, todos} = this.props;
+        const {dispatch, counter, todos, delayUpdateRedux} = this.props;
         let {num} = counter;
         let {text} = todos;
+
+        let delayText = delayUpdateRedux.delay;
         return (
             <View style={styles.container}>
                 <TouchableOpacity style={styles.row} onPress={() => {
@@ -37,9 +40,29 @@ class ReduxDemo extends Component {
                 }}>
                     <Text>修改Text值</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.row} onPress={() => {
+                    dispatch(delayUpdateAction('love'))
+                }}>
+                    <Text>修改延时Text的值</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.row} onPress={() => {
+                    dispatch(delayAdd(++num))
+                }}>
+                    <Text>延时增加</Text>
+                </TouchableOpacity>
                 <View style={[styles.row, styles.text]}>
                     <Text>当前num值是：<Text style={styles.red}>{num}</Text>，当前的Text值是：<Text style={styles.red}>{text}</Text></Text>
                 </View>
+                <Text
+                    style={{
+                        backgroundColor: '#f0f0f0',
+                        textAlign: 'center',
+                        textAlignVertical: 'center',
+                        padding: 10,
+                        marginTop: 10,
+                        alignSelf:'stretch'
+
+                    }}>{delayText}</Text>
             </View>
         );
     }
@@ -74,12 +97,13 @@ const styles = StyleSheet.create({
 //这是你自己编写的一个函数。这个函数声明了你的组件需要整个 store 中的哪一部分数据作为自己的 props。
 //这个函数的作用是确定哪些 Redux 全局的 state 是我们组件想要通过 props 获取的
 function mapStateToProps(state) {
-    const {todos, counter} = state;
+    const {todos, counter,delayUpdateRedux} = state;
     return {
         todos,
         counter,
+        delayUpdateRedux,
     }
 
 }
 
-// export default connect(mapStateToProps)(ReduxDemo);
+export default connect(mapStateToProps)(ReduxDemo);

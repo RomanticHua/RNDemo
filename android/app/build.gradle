@@ -137,15 +137,13 @@ android {
             buildConfigField "String", "CODEPUSH_KEY", '"WkBw4kk2TsTdj2gH-MCE-4lA6-bU0346a304-e816-496d-b6f1-cd3403d560b0"'
         }
 
-         releaseStaging {
-         buildConfigField "String", "CODEPUSH_KEY", '"BOVfre7i9CF00nygmWiIxW7q7sX60346a304-e816-496d-b6f1-cd3403d560b0"'
-         }
+//         releaseStaging {
+//         buildConfigField "String", "CODEPUSH_KEY", '"BOVfre7i9CF00nygmWiIxW7q7sX60346a304-e816-496d-b6f1-cd3403d560b0"'
+//         }
+
          debug {
-         buildConfigField "String", "CODEPUSH_KEY", '"BOVfre7i9CF00nygmWiIxW7q7sX60346a304-e816-496d-b6f1-cd3403d560b0"'
+         buildConfigField  "String", "CODEPUSH_KEY", '"BOVfre7i9CF00nygmWiIxW7q7sX60346a304-e816-496d-b6f1-cd3403d560b0"'
          }
-
-
-
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->

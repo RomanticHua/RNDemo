@@ -27,12 +27,12 @@ export default class CodePushExample extends Component {
         });
 
     }
-
+    // title={'CodePush更新' }
     render() {
         return (
             <View style={styles.container}>
                 <Button
-                    title={'CodePush更新'}
+                    title={'CodePush更新前的标题'}
                     onPress={() => this.update()}
                 />
             </View>

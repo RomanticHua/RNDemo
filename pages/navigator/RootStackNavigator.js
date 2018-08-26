@@ -39,6 +39,7 @@ import NavigationExample3 from "../example/navigation/NavigationExample3";
 import TopNavigator from "./TopNavigator";
 import TouchExample from "../example/pages/TouchExample";
 import CodePushExample from "../example/pages/CodePushExample";
+import ReduxDemo from "../example/ReduxDemo";
 
 
 export default RootStackNavigator = createStackNavigator({
@@ -84,6 +85,7 @@ export default RootStackNavigator = createStackNavigator({
     TopNavigator,
     TouchExample,
     CodePushExample,
+    ReduxDemo,
 }, {
 
     headerMode: 'none',// 不要react-navigation默认的返回条
